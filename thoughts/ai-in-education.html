@@ -5,116 +5,195 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>AI in Education: What Counts as Teaching?</title>
     <link rel="stylesheet" href="../styles.css" />
+
+    <!-- Page-only polish (keeps your global styles untouched) -->
+    <style>
+      .post-shell { max-width: 80ch; margin: 0 auto; padding: 3rem 0; }
+      .post-header { margin-bottom: 2rem; }
+      .post-title { font-size: clamp(2rem, 3vw, 2.6rem); line-height: 1.1; margin: 0.5rem 0 0.75rem; }
+      .post-meta { color: var(--text-secondary); font-size: 0.95rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
+      .pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.2rem 0.7rem; border-radius: 999px; border: 1px solid var(--border-color); background: var(--bg-secondary); }
+      .divider { height: 1px; background: var(--border-color); margin: 2rem 0; }
+
+      .post { font-size: 1.05rem; }
+      .post p { margin: 1rem 0; color: var(--text-primary); }
+      .post h2 { font-size: 1.55rem; margin: 2.25rem 0 0.75rem; }
+      .post h3 { font-size: 1.2rem; margin: 1.75rem 0 0.5rem; color: var(--text-primary); }
+      .post blockquote {
+        margin: 1.25rem 0;
+        padding: 0.75rem 1rem;
+        border-left: 3px solid var(--primary-color);
+        background: var(--bg-secondary);
+        border-radius: 10px;
+        color: var(--text-secondary);
+      }
+      .post ul { margin: 0.75rem 0 1rem 1.25rem; }
+      .post li { margin: 0.35rem 0; color: var(--text-primary); }
+
+      .callout {
+        margin: 1.25rem 0;
+        padding: 1rem 1.1rem;
+        border: 1px solid var(--border-color);
+        background: var(--bg-secondary);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+      }
+      .callout strong { display: block; margin-bottom: 0.35rem; }
+
+      details {
+        margin: 1.5rem 0;
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        background: #fff;
+        box-shadow: var(--shadow);
+        overflow: hidden;
+      }
+      summary {
+        cursor: pointer;
+        padding: 0.9rem 1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        background: var(--bg-secondary);
+        list-style: none;
+      }
+      summary::-webkit-details-marker { display: none; }
+      .codewrap {
+        padding: 1rem;
+        max-height: 70vh;
+        overflow: auto;
+        border-top: 1px solid var(--border-color);
+      }
+      pre {
+        margin: 0;
+        white-space: pre-wrap;
+        word-break: break-word;
+        font-size: 0.9rem;
+        line-height: 1.45;
+        color: var(--text-primary);
+      }
+
+      .footnotes { margin-top: 2.5rem; color: var(--text-secondary); font-size: 0.95rem; }
+      .footnotes a { color: var(--primary-color); text-decoration: none; }
+      .footnotes a:hover { text-decoration: underline; }
+    </style>
   </head>
+
   <body>
-    <header class="container">
+    <header class="container post-shell post-header">
       <p><a href="index.html" class="blog-link">← All Thoughts</a></p>
-      <h1 class="blog-title">AI in Education: What Counts as Teaching?</h1>
-      <div class="blog-meta"><span class="blog-date">2025</span> · <span class="blog-category">Essay</span></div>
+      <h1 class="post-title">AI in Education: What Counts as Teaching?</h1>
+
+      <div class="post-meta">
+        <span class="pill">2025</span>
+        <span class="pill">Essay</span>
+        <span class="pill">Philosophy of Education</span>
+      </div>
+
+      <div class="divider"></div>
     </header>
-    <main class="container" style="max-width: 80ch;">
-      <h2 class="section-title" style="text-align:left;">Manuscript (LaTeX)</h2>
-      <p class="section-description" style="text-align:left;">Draft LaTeX source included below for reference. If you prefer, I can render this to PDF and link it from here.</p>
-      <pre style="white-space: pre-wrap; word-break: break-word; border:1px solid var(--border); border-radius:8px; padding:1rem; background:#fff; overflow:auto; max-height:70vh;"><code>\documentclass[11pt]{article}
 
-% ----------------------------
-% PACKAGES
-% ----------------------------
-\usepackage[margin=1in]{geometry}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage{setspace}
-\usepackage{amsmath, amssymb}
-\usepackage[round,authoryear]{natbib}
+    <main class="container post-shell">
+      <article class="post">
+        <p class="section-description" style="text-align:left; margin-top: 0;">
+          This essay argues that large language models can support instruction, but cannot serve as teacher replacements,
+          because the role of teaching depends on epistemic standing, planning agency, and moral accountability.
+        </p>
 
-% Allow good URL breaking (including at hyphens)
-\usepackage[hyphens]{url}
+        <div class="callout">
+          <strong>Manuscript title</strong>
+          The Affordance Constraint: Agency, Accountability, and the Ontological Limits of LLMs in Education
+        </div>
 
-\usepackage{graphicx}
-\usepackage{booktabs}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage{fancyhdr}
-\usepackage{csquotes}
+        <h2>Abstract</h2>
+        <p>
+          This paper argues that large language models cannot replace human teachers because they lack the epistemic standing
+          and moral accountability required for genuine pedagogy. Using a framework of pedagogical affordances, the analysis
+          demonstrates that teaching depends on three fundamental capacities: theory of mind and student modeling, hierarchical
+          agency and long-term planning, and moral accountability in testimony. Although AI systems can simulate the surface
+          forms of explanation and feedback, they cannot instantiate the relational, normative, and epistemic conditions that
+          make teaching possible. The proper role of AI in education is therefore instrumental rather than authoritative.
+        </p>
 
-% Load hyperref *after* most packages
-\usepackage[hidelinks]{hyperref}
+        <h2>Introduction</h2>
+        <p>
+          The integration of artificial intelligence into education raises a question that is epistemic before it is operational:
+          what is the status of AI as a source of knowledge? Can a large language model (LLM) function as a teacher, or does
+          treating it as one commit a category error that conflates performance with competence?
+        </p>
 
-% Make URL line-breaking a bit more flexible
-\Urlmuskip=0mu plus 1mu\relax
+        <p>
+          This inquiry is not speculative. Institutions are actively experimenting with AI-led instructional models, deploying
+          systems marketed not merely as repositories of information but as pedagogical agents capable of personalization,
+          diagnosis, and guidance. The empirical literature on Intelligent Tutoring Systems (ITS) supports some optimism in
+          procedural domains. VanLehn’s meta-analysis suggests that well-designed ITS can approach human tutoring effectiveness
+          in well-structured settings.
+        </p>
 
-% ----------------------------
-% FORMATTING
-% ----------------------------
-\hypersetup{hidelinks}
+        <p>
+          This efficacy is constrained by a distinction between procedural gains and epistemic teaching. Many success cases are
+          concentrated in domains where knowledge is algorithmic and answers are binary. Yet education also involves conceptual
+          understanding, critical judgment, and the development of epistemic agency.
+        </p>
 
-\titleformat{\section}{\large\bfseries}{\thesection.}{0.75em}{}
-\titleformat{\subsection}{\normalsize\bfseries}{\thesubsection}{0.75em}{}
-\titleformat{\subsubsection}{\normalsize\itshape}{\thesubsubsection}{0.75em}{}
+        <p>
+          I argue that these limitations are not temporary technical shortcomings or artifacts of current error rates. They arise
+          from architectural and philosophical constraints that follow from the nature of LLMs and from the requirements of teaching.
+        </p>
 
-\pagestyle{fancy}
-\fancyhf{}
-\lhead{Evaluating AI in Education}
-\rhead{\thepage}
+        <h2>Scope and Approach</h2>
+        <p>
+          This paper evaluates the strongest claim: that LLMs could serve as complete replacements for human teachers, occupying
+          equivalent epistemic roles and assuming comparable responsibilities. This replacement model is analytically distinct from
+          course-helper and hybrid models where humans retain epistemic authority.
+        </p>
 
-% ----------------------------
-% TITLE
-% ----------------------------
-\title{
-\textbf{The Affordance Constraint: Agency, Accountability, and the Ontological Limits of LLMs in Education}
-}
+        <h2>Pedagogical Affordances</h2>
+        <p>
+          I introduce pedagogical affordances as an intermediate level of analysis: relational possibilities for warranted belief
+          formation made available by an instructional arrangement. On this view, teaching succeeds by configuring conditions under
+          which understanding can emerge, not merely by presenting information.
+        </p>
 
-\author{
-Kavita Kar \\
-Philosophy of Education \\
-}
+        <blockquote>
+          What kinds of epistemically justified learning become possible for this learner, in this environment, under this instructional structure?
+        </blockquote>
 
-\date{\today}
+        <h2>Three Core Pedagogical Affordances</h2>
 
-\begin{document}
+        <h3>Theory of mind and student modeling</h3>
+        <p>
+          Effective teaching depends on structured, evolving models of learners’ knowledge states and misconceptions. Teachers infer
+          why errors occur, update their models over time, and draw on cues that are not reducible to the textual trace of an answer.
+          LLMs can simulate personalization, but they do not maintain stable, queryable models of a student as a thinker.
+        </p>
 
-\maketitle
+        <h3>Hierarchical agency and planning</h3>
+        <p>
+          Teaching is teleological: it is organized around long-term objectives and the sequencing constraints of concept dependencies.
+          Teachers maintain nested intentions and preserve coherence across weeks and months. LLM behavior is optimized locally for
+          next-token continuation; long-horizon pedagogical agency is not an internal feature of the system.
+        </p>
 
-\begin{abstract}
-This paper argues that large language models cannot replace human teachers because they lack the epistemic standing and moral accountability required for genuine pedagogy. Using a framework of pedagogical affordances, the analysis demonstrates that teaching depends on three fundamental capacities: theory of mind and student modeling, hierarchical agency and long-term planning, and moral accountability in testimony. Although AI systems can simulate the surface forms of explanation and feedback, they cannot instantiate the relational, normative, and epistemic conditions that make teaching possible. The proper role of AI in education is therefore instrumental rather than authoritative.
-\end{abstract}
+        <h3>Moral accountability and testimony</h3>
+        <p>
+          Much teaching works through testimony and challenge. For testimony to function epistemically, speakers must be accountable
+          for what they assert. Human teachers can be challenged, corrected, sanctioned, and required to justify claims. LLM outputs
+          may be useful, but the system does not bear responsibility in the way an educator does.
+        </p>
 
-\vspace{1em}
+        <h2>Conclusion</h2>
+        <p>
+          The practical implication is not abstinence, but division of labor. LLMs can be valuable auxiliaries for retrieval,
+          variation, and low-stakes practice, while epistemic authority and responsibility remain with human educators. That boundary
+          is not merely a quality gap. It reflects what it is to teach.
+        </p>
 
-% =========================================================
-\section{Introduction}
-% =========================================================
 
-The integration of artificial intelligence into education raises a question that is epistemic before it is operational: What is the status of AI as a source of knowledge? Can a large language model (LLM) function as a teacher, or does treating it as one commit a category error that conflates performance with competence?
-
-This inquiry is not speculative. Numerous institutions are actively experimenting with AI-led instructional models, deploying systems marketed not merely as repositories of information but as pedagogical agents capable of personalization, diagnosis, and guidance. The empirical literature on Intelligent Tutoring Systems (ITS) further supports optimism about such models. VanLehn's influential meta-analysis shows that well-designed ITS can approximate human tutoring effectiveness in procedural, well-structured domains such as elementary mathematics \citep{vanlehn2011relative}. Human tutors outperformed no tutoring with an effect size of approximately $d \approx 0.79$, while sophisticated, step-based ITS achieved roughly $d \approx 0.76$; in many domains, the difference between human tutors and ITS was statistically negligible. Recent adaptive platforms demonstrate measurable improvements in algorithmic subjects in which success can be quantified as procedural fluency, understood as the reliable execution of well-defined steps.
-
-Intellectual integrity requires direct engagement with these findings. Systems that excel in diagnosing granular procedural errors and providing immediate corrective feedback constitute a significant advance in educational technology. For example, AI-driven systems can accelerate elementary mathematics learning by isolating specific gaps, such as identifying that a student's difficulty with long division stems from a subtraction error rather than a misunderstanding of the division algorithm. In medical education, randomized clinical trials report that AI tutoring systems can provide feedback on surgical simulations that leads to higher performance scores than remote expert instruction, primarily through continuous, metric-based assessment against quantifiable criteria.
-
-This efficacy, however, is constrained by a crucial distinction between procedural gains and epistemic teaching. VanLehn's success cases, and those associated with modern adaptive platforms, are located primarily in domains where knowledge is algorithmic and answers are binary. The systems effectively fit curves to student performance in order to optimize procedural fluency. They function as sophisticated drill systems for cognitive logistics. Yet education is not merely the acquisition of procedures; it is the cultivation of conceptual understanding, the development of critical judgment, and the formation of epistemic agency.
-
-I argue that these limitations are not temporary technical shortcomings or artifacts of current error rates. They arise from architectural and philosophical constraints that follow from the nature of LLMs and from the fundamental requirements of teaching.
-
-\subsection*{Scope and Approach}
-
-This paper deliberately evaluates the strongest claim: that LLMs could serve as complete replacements for human teachers, occupying equivalent epistemic roles and assuming comparable responsibilities. This replacement model is analytically distinct from:
-\begin{itemize}[leftmargin=2em]
-  \item course-helper models, in which AI functions as an auxiliary tool (calculator, reference, practice generator);
-  \item hybrid infrastructure models, in which AI supports curriculum design and accessibility while humans retain epistemic authority.
-\end{itemize}
-
-I adopt the replacement model not because it reflects current educational consensus, but because it provides a clear test case. If LLMs cannot replace teachers even in principle, then debates about optimal human--AI partnerships gain clarity regarding where authority must remain.
-
-The argument employs the concept of affordances, understood as structured possibilities for action that environments offer agents, to analyze teaching requirements and LLM capabilities. In educational contexts, pedagogical affordances are relational structures that connect students to legitimate epistemic sources: perception, reasoning, testimony, and memory. Human teachers occupy unique positions within these networks as epistemic agents capable of perception, accountable testimony, and rational justification.
-
-I argue that LLMs interrupt this epistemic "throughline." They can simulate surface manifestations of perception (as if observed), reasoning (as if inferred), and testimony (as if asserted), but they do not engage in the underlying practices that confer epistemic significance on these forms. As \citet{bender2021stochastic} characterize them, LLMs are "stochastic parrots": systems that stitch together linguistic forms on the basis of probabilistic information about how such forms combine, without reference to meaning. This is not only an engineering issue but an ontological one.
-
-The paper proceeds in five stages, culminating in constructive principles for responsible integration of AI into education.
-
-% ... content continues ...
-
-\end{document}
-</code></pre>
+        <div class="footnotes">
+          <p>
+          </p>
+        </div>
+      </article>
     </main>
   </body>
-  </html>
+</html>

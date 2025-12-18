@@ -87,3 +87,45 @@ const copyrightElement = document.querySelector('.footer p');
 if (copyrightElement) {
     copyrightElement.innerHTML = `&copy; ${currentYear} Kavita Kar. All rights reserved.`;
 }
+
+// Dynamically render Writing (blog) cards from JSON
+async function loadWritingCards() {
+    const grid = document.querySelector('.blog-grid');
+    if (!grid) return;
+
+    try {
+        const res = await fetch('assets/writing.json', { cache: 'no-cache' });
+        if (!res.ok) throw new Error(`Failed to load writing.json: ${res.status}`);
+        const items = await res.json();
+
+        // Clear any hardcoded fallback cards
+        grid.innerHTML = '';
+
+        items.forEach(item => {
+            const card = document.createElement('article');
+            card.className = 'blog-card';
+            card.innerHTML = `
+                <div class="blog-meta">
+                  <span class="blog-date">${item.date || ''}</span>
+                  <span class="blog-category">${item.category || ''}</span>
+                </div>
+                <h3 class="blog-title">${item.title || ''}</h3>
+                <p class="blog-excerpt">${item.excerpt || ''}</p>
+                <a href="${item.href}" class="blog-link">Read →</a>
+            `;
+
+            // Prepare for fade-in animation like other cards
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+
+            grid.appendChild(card);
+            observer.observe(card);
+        });
+    } catch (err) {
+        // If loading fails, leave the existing hardcoded content as fallback
+        console.warn('[writing] Could not load writing.json:', err);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', loadWritingCards);

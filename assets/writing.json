@@ -1,0 +1,30 @@
+[
+  {
+    "title": "AI in Education: What Counts as Teaching?",
+    "date": "Jan 2025",
+    "category": "Essay",
+    "excerpt": "An argument about the limits of LLM-based instruction and what genuine pedagogy requires when learning is understood as warranted belief formation.",
+    "href": "thoughts/ai-in-education.html"
+  },
+  {
+    "title": "Lucid, Volatility, and the Price of Time",
+    "date": "Dec 2025",
+    "category": "Markets",
+    "excerpt": "Why LCID's implied volatility may overprice near-term failure after the refinancing.",
+    "href": "thoughts/lcid-volatility-price-of-time.html"
+  },
+  {
+    "title": "Quant Research Notes",
+    "date": "Nov 2025",
+    "category": "Note",
+    "excerpt": "Lightweight writeups on hypothesis testing, correlation structure, and what changes when a model leaves the notebook and enters a real workflow.",
+    "href": "thoughts/quant-research-notes.html"
+  },
+  {
+    "title": "Tools I Like Building",
+    "date": "Oct 2025",
+    "category": "Build",
+    "excerpt": "Notes on building fast, human-centered technical systems: debuggability, evaluation, and designing interfaces that reduce cognitive load.",
+    "href": "thoughts/tools-i-like-building.html"
+  }
+]
