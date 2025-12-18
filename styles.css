@@ -16,14 +16,14 @@
   /* Color */
   --bg: #ffffff;
   --surface: #ffffff;
-  --surface-2: #f7f7f8;
+  --surface-2: #fafafb;
   --text: #0f172a;
   --muted: #475569;
-  --border: rgba(15, 23, 42, 0.10);
+  --border: rgba(15, 23, 42, 0.14);
 
   /* Accent (neutral, cleaner) */
   --accent: #0f172a;
-  --accent-2: #334155;
+  --accent-2: #475569;
 
   /* Layout */
   --container: 1120px;
@@ -124,10 +124,10 @@ body {
    Hero
 ========================= */
 .hero {
-  padding: 6rem 0 5rem;
+  padding: 5rem 0 4.5rem;
   text-align: center;
   color: var(--text);
-  background: linear-gradient(to bottom, #ffffff, #fbfbfd);
+  background: #fff;
   border-bottom: 1px solid var(--border);
 }
 
@@ -137,14 +137,14 @@ body {
 }
 
 .hero h1 {
-  font-size: clamp(2.1rem, 4.2vw, 3.2rem);
-  font-weight: 760;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 720;
   letter-spacing: -0.04em;
   margin-bottom: 0.75rem;
 }
 
 .hero-subtitle {
-  font-size: clamp(1.05rem, 1.4vw, 1.25rem);
+  font-size: clamp(1.05rem, 1.3vw, 1.2rem);
   color: var(--muted);
   margin-bottom: 1rem;
 }
