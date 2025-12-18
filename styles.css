@@ -47,7 +47,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 20px;
+    padding: 1rem 1.25rem;
 }
 
 .nav-brand {
@@ -69,7 +69,8 @@ body {
     transition: color 0.3s ease;
 }
 
-.nav-link:hover {
+.nav-link:hover,
+.nav-link.active {
     color: var(--primary-color);
 }
 
