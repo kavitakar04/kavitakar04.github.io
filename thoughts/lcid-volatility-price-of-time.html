@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lucid, Volatility, and the Price of Time</title>
+    <link rel="stylesheet" href="../styles.css" />
+  </head>
+  <body>
+    <header class="container">
+      <p><a href="index.html" class="blog-link">← All Thoughts</a></p>
+      <h1 class="blog-title">Lucid, Volatility, and the Price of Time</h1>
+      <div class="blog-meta"><span class="blog-date">2025</span> · <span class="blog-category">Markets</span></div>
+    </header>
+    <main class="container" style="max-width: 72ch;">
+      <p>Lucid is trading with volatility that implies a much higher probability of failure than what its capital structure suggests.</p>
+      <p>The stock continues to trade as if it were just another EV name drifting toward irrelevance. But the refinancing decision disclosed in November 2025 materially changes that framing. Through Ayar Third Investment Company, the Saudi Public Investment Fund increased and entrenched its ownership, bringing its beneficial stake to just over 60 percent. At the same time, it committed roughly $636 million through a prepaid forward agreement to acquire approximately 37.4 million additional shares at an effective price of $16.99, adjusted for the reverse split.</p>
+      <p>That commitment was made while the stock itself was trading in the low teens. Whatever one thinks about Lucid’s operating performance, this is not a marginal vote of confidence. It reflects a decision to extend the company’s runway and push its capital structure out to a 2031 horizon. That fact has not meaningfully filtered into how the equity is being priced.</p>
+      <p>As a result, implied volatility in LCID remains elevated. Near-the-money straddles and strangles are pricing in large moves in either direction, including scenarios where the equity collapses. If you believe the probability of Lucid going to zero over the next year is lower than what the options market implies, that volatility becomes an input to trade rather than something to avoid.</p>
+      <p>Selling volatility at current levels allows an effective stock entry at roughly half the headline price. The trade is not about near-term execution, delivery numbers, or sentiment shifts. It is a time trade. The assumption is simply that a company whose refinancing has been underwritten by a sovereign wealth fund with an explicit industrial mandate is unlikely to be allowed to fail outright in the near term.</p>
+      <p>Lucid benefits from this structure by securing capital at a rate that would otherwise be unavailable to a company at its stage. Investors benefit by gaining exposure to upside volatility while being compensated for bearing it. Whether the market eventually reprices that reality is uncertain. For now, the options market is still charging for tail risk that recent filings suggest has been partially removed.</p>
+
+      <h2 class="section-title" style="text-align:left; margin-top:2.5rem;">Live LCID Price</h2>
+      <div class="tradingview-widget-container" style="margin: 1rem 0 2rem;">
+        <iframe
+          src="https://s.tradingview.com/widgetembed/?symbol=NASDAQ:LCID&interval=D&hidesidetoolbar=1&symboledit=0&saveimage=0&toolbarbg=f1f3f6&studies=[]&theme=light&style=1&locale=en"
+          width="100%"
+          height="400"
+          frameborder="0"
+          allowtransparency="true"
+          scrolling="no">
+        </iframe>
+      </div>
+
+      <h2 class="section-title" style="text-align:left; margin-top:2.5rem;">Example Trade: Selling Volatility</h2>
+      <h3 style="margin-top:1rem;">Position Structure</h3>
+      <ul>
+        <li>Long stock: 200 shares @ $12.86</li>
+        <li>Short call: 2x $15.00 strike, Dec 17 expiration</li>
+        <li>Short put: 1x $13.00 strike, Aug 21 expiration</li>
+        <li>Total premium collected: $1,400</li>
+      </ul>
+
+      <h3 style="margin-top:1rem;">Economics</h3>
+      <div style="overflow-x:auto; border:1px solid var(--border); border-radius:8px;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+          <thead>
+            <tr style="background:var(--surface-2);">
+              <th style="text-align:left; padding:0.6rem 0.75rem; border-bottom:1px solid var(--border);">Metric</th>
+              <th style="text-align:left; padding:0.6rem 0.75rem; border-bottom:1px solid var(--border);">Calculation</th>
+              <th style="text-align:left; padding:0.6rem 0.75rem; border-bottom:1px solid var(--border);">Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Total Stock Cost</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">200 × $12.86</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">($2,572.00)</td>
+            </tr>
+            <tr>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Total Net Credit</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">$1,000 (calls) + $400 (put)</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">+$1,400.00</td>
+            </tr>
+            <tr>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Total Net Cost</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">$2,572.00 − $1,400.00</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">($1,172.00)</td>
+            </tr>
+            <tr>
+              <td style="padding:0.55rem 0.75rem;">Effective Cost per Share</td>
+              <td style="padding:0.55rem 0.75rem;">$1,172 ÷ 200</td>
+              <td style="padding:0.55rem 0.75rem;"><strong>$5.86</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2 class="section-title" style="text-align:left; margin-top:2.5rem;">Refinancing Timeline and Conversion Mechanics</h2>
+      <div style="overflow-x:auto; border:1px solid var(--border); border-radius:8px;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+          <thead>
+            <tr style="background:var(--surface-2);">
+              <th style="text-align:left; padding:0.6rem 0.75rem; border-bottom:1px solid var(--border);">Date</th>
+              <th style="text-align:left; padding:0.6rem 0.75rem; border-bottom:1px solid var(--border);">Event</th>
+              <th style="text-align:left; padding:0.6rem 0.75rem; border-bottom:1px solid var(--border);">Significance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Before Aug 1, 2031</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Conditional Conversion Period</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Noteholders may convert only if stock price triggers or other specified events occur.</td>
+            </tr>
+            <tr>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Nov 6, 2028</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">First Call Date (Lucid Option)</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Lucid may redeem notes for cash if stock exceeds 130% of conversion price ($20.81) for a defined period.</td>
+            </tr>
+            <tr>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Nov 1, 2029</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Holder Put Date</td>
+              <td style="padding:0.55rem 0.75rem; border-bottom:1px solid var(--border);">Noteholders may require Lucid to repurchase notes for cash, providing downside protection.</td>
+            </tr>
+            <tr>
+              <td style="padding:0.55rem 0.75rem;">From Aug 1, 2031</td>
+              <td style="padding:0.55rem 0.75rem;">Final Conversion Period</td>
+              <td style="padding:0.55rem 0.75rem;">Notes become freely convertible regardless of stock price.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </body>
+  </html>
+
