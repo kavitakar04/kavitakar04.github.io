@@ -21,9 +21,9 @@
   --muted: #475569;
   --border: rgba(15, 23, 42, 0.10);
 
-  /* Accent (kept close to your original but slightly calmer) */
-  --accent: #4f46e5;
-  --accent-2: #7c3aed;
+  /* Accent (neutral, cleaner) */
+  --accent: #0f172a;
+  --accent-2: #334155;
 
   /* Layout */
   --container: 1120px;
@@ -127,10 +127,7 @@ body {
   padding: 6rem 0 5rem;
   text-align: center;
   color: var(--text);
-  background:
-    radial-gradient(1200px 600px at 50% -120px, rgba(79, 70, 229, 0.12), transparent 60%),
-    radial-gradient(900px 500px at 90% 0px, rgba(124, 58, 237, 0.10), transparent 55%),
-    linear-gradient(to bottom, #ffffff, #fbfbfd);
+  background: linear-gradient(to bottom, #ffffff, #fbfbfd);
   border-bottom: 1px solid var(--border);
 }
 
@@ -280,8 +277,8 @@ section {
   font-size: 0.8rem;
   font-weight: 650;
   border: 1px solid var(--border);
-  background: rgba(79, 70, 229, 0.08);
-  color: var(--accent);
+  background: rgba(15, 23, 42, 0.04);
+  color: var(--text);
 }
 
 .project-description,
@@ -342,10 +339,10 @@ section {
   color: var(--muted);
 }
 
-/* Slightly different accent for categories in writing */
-.blog-category {
-  background: rgba(124, 58, 237, 0.08);
-  color: var(--accent-2);
+  /* Minimal category styling for writing */
+  .blog-category {
+  background: rgba(15, 23, 42, 0.04);
+  color: var(--muted);
 }
 
 .blog-title {

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Kavita Kar — Math @ Stanford. CS + quantitative research + education technology. Projects, writing, and contact." />
+  <meta name="description" content="Kavita Kar — Math @ Stanford. CS + quantitative research + trading. Projects, writing, and contact." />
   <title>Kavita Kar</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -31,18 +31,55 @@
     <div class="container">
       <div class="hero-content">
         <h1>Kavita Kar</h1>
-        <p class="hero-subtitle">Math @ Stanford · CS · Quantitative Research · Education Technology</p>
+        <p class="hero-subtitle">Math @ Stanford · CS · Quantitative Research · Trading</p>
         <p class="hero-description">
-          I build research-driven tools at the intersection of markets, computation, and learning.
+          I build research-driven tools at the intersection of markets, computation, and decision-making.
           I like problems where theory meets deployment: extracting signal from noisy systems, designing usable workflows,
-          and making complex ideas teachable.
+          and turning models into practical trading and research systems.
         </p>
 
         <div class="hero-buttons">
           <a href="#projects" class="btn btn-primary">Selected Work</a>
           <a href="#contact" class="btn btn-secondary">Contact</a>
           <!-- Replace with your actual resume path, e.g. /assets/KavitaKar_Resume.pdf -->
-          <a href="assets/KavitaKar_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Resume</a>
+          <a href="assets/pdf/KavitaKar_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Background Section -->
+  <section id="background">
+    <div class="container">
+      <h2 class="section-title">Background</h2>
+      <p class="section-description">
+        I am a senior majoring in Mathematics at Stanford, with substantial coursework in computer science and applied probability. My interests center on quantitative research, statistical modeling, and decision-making under uncertainty, with an emphasis on translating theory into practical systems.
+      </p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Computer Science</h3>
+          <ul>
+            <li>CS 229: Machine Learning</li>
+            <li>CS 238: Decision Making under Uncertainty</li>
+          </ul>
+        </div>
+        <div class="project-card">
+          <h3>Mathematics</h3>
+          <ul>
+            <li>Math 151: Probability Theory</li>
+            <li>Math 158: Stochastic Processes</li>
+            <li>Math 171: Fundamental Concepts of Analysis</li>
+            <li>Math 172: Measure Theory</li>
+          </ul>
+        </div>
+        <div class="project-card">
+          <h3>Management Science & Engineering</h3>
+          <ul>
+            <li>MS&amp;E 241: Investment Science</li>
+            <li>MS&amp;E 245: Statistical Methods in Engineering</li>
+            <li>MS&amp;E 348: Advanced Topics in Financial Engineering</li>
+          </ul>
         </div>
       </div>
     </div>
@@ -53,7 +90,7 @@
     <div class="container">
       <h2 class="section-title">Selected Work</h2>
       <p class="section-description">
-        A few projects across quantitative research, automation, and curriculum design. More details available on request.
+        A few projects across quantitative research, trading research, and automation. More details available on request.
       </p>
 
       <div class="projects-grid">
@@ -99,13 +136,12 @@
 
         <div class="project-card">
           <div class="project-header">
-            <h3>AI in Education: Philosophy → Design Constraints</h3>
-            <span class="project-tag">EdTech</span>
+            <h3>Markets Research: From Hypotheses → Trading Constraints</h3>
+            <span class="project-tag">Trading</span>
           </div>
           <p class="project-description">
-            Wrote a philosophy of education paper analyzing what LLMs can and cannot provide as “teachers,” framed
-            around the conditions needed for warranted belief formation. Motivated by pedagogy and the practical
-            constraints of real instructional settings.
+            Framed research into what information actually moves prices and on what horizons; translated hypotheses into
+            testable metrics and operational constraints for trading workflows.
           </p>
           <div class="project-footer">
             <div class="project-tech">
@@ -113,8 +149,7 @@
               <span class="tech-tag">AI</span>
               <span class="tech-tag">Curriculum</span>
             </div>
-            <!-- Replace with your PDF if you want it public -->
-            <a href="#writing" class="project-link">See writing →</a>
+            <a href="#projects" class="project-link">See more →</a>
           </div>
         </div>
       </div>
@@ -126,7 +161,7 @@
     <div class="container">
       <h2 class="section-title">Writing</h2>
       <p class="section-description">
-        Short notes and longer-form work on markets, learning, and technical craft.
+        Short notes and longer-form work on markets, quantitative methods, and technical craft.
       </p>
 
       <div class="blog-grid">
@@ -140,8 +175,8 @@
             An argument about the limits of LLM-based instruction and what genuine pedagogy requires
             when learning is understood as warranted belief formation.
           </p>
-          <!-- Replace with your PDF/URL -->
-          <a href="#" class="blog-link">Read →</a>
+          <!-- Linked to thoughts/ detail page -->
+          <a href="thoughts/ai-in-education.html" class="blog-link">Read →</a>
         </article>
 
         <article class="blog-card">
@@ -154,8 +189,7 @@
             Lightweight writeups on hypothesis testing, correlation structure, and what changes when a model
             leaves the notebook and enters a real workflow.
           </p>
-          <!-- Replace with your URL (could be a GitHub README section) -->
-          <a href="#" class="blog-link">Read →</a>
+          <a href="thoughts/quant-research-notes.html" class="blog-link">Read →</a>
         </article>
 
         <article class="blog-card">
@@ -168,7 +202,7 @@
             Notes on building fast, human-centered technical systems: debuggability, evaluation,
             and designing interfaces that reduce cognitive load.
           </p>
-          <a href="#" class="blog-link">Read →</a>
+          <a href="thoughts/tools-i-like-building.html" class="blog-link">Read →</a>
         </article>
       </div>
     </div>
@@ -182,4 +216,23 @@
         The easiest way to reach me is email. I’m also on GitHub and LinkedIn.
       </p>
 
-      <div c
+      <div class="contact-links">
+        <a class="contact-item" href="mailto:kkar@stanford.edu" aria-label="Email">
+          <div class="contact-icon">✉️</div>
+          <div>kkar@stanford.edu</div>
+        </a>
+        <a class="contact-item" href="https://www.linkedin.com/in/kavitakar" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <div class="contact-icon">🔗</div>
+          <div>LinkedIn</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">© <span id="year"></span> Kavita Kar</div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
