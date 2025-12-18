@@ -1,197 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Personal website showcasing projects and blogs">
-    <title>Kavita Kar - Personal Website</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kavita Kar — Math @ Stanford. CS + quantitative research + education technology. Projects, writing, and contact." />
+  <title>Kavita Kar</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="nav-brand">Kavita Kar</div>
-            <ul class="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#blog" class="nav-link">Blog</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="nav-brand">Kavita Kar</div>
+      <ul class="nav-menu">
+        <li><a href="#home" class="nav-link">Home</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#writing" class="nav-link">Writing</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="hamburger" aria-label="Open navigation menu" role="button" tabindex="0">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero/Home Section -->
+  <section id="home" class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Kavita Kar</h1>
+        <p class="hero-subtitle">Math @ Stanford · CS · Quantitative Research · Education Technology</p>
+        <p class="hero-description">
+          I build research-driven tools at the intersection of markets, computation, and learning.
+          I like problems where theory meets deployment: extracting signal from noisy systems, designing usable workflows,
+          and making complex ideas teachable.
+        </p>
+
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">Selected Work</a>
+          <a href="#contact" class="btn btn-secondary">Contact</a>
+          <!-- Replace with your actual resume path, e.g. /assets/KavitaKar_Resume.pdf -->
+          <a href="assets/KavitaKar_Resume.pdf" class="btn btn-secondary" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects">
+    <div class="container">
+      <h2 class="section-title">Selected Work</h2>
+      <p class="section-description">
+        A few projects across quantitative research, automation, and curriculum design. More details available on request.
+      </p>
+
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="project-header">
+            <h3>News → Signal Pipeline (Market Research)</h3>
+            <span class="project-tag">Automation</span>
+          </div>
+          <p class="project-description">
+            Built an MVP pipeline for collecting, filtering, and surfacing market-relevant information to traders,
+            modeled after a search-engine architecture. Focused on retrieval quality, structured summaries, and
+            fast human-in-the-loop workflows.
+          </p>
+          <div class="project-footer">
+            <div class="project-tech">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">NLP</span>
+              <span class="tech-tag">Data Pipelines</span>
             </div>
+            <a href="https://github.com/kavitakar04" class="project-link" target="_blank" rel="noopener">GitHub →</a>
+          </div>
         </div>
-    </nav>
 
-    <!-- Hero/Home Section -->
-    <section id="home" class="hero">
-        <div class="container">
-            <div class="hero-content">
-                <h1>Hi, I'm Kavita Kar</h1>
-                <p class="hero-subtitle">Developer | Creator | Writer</p>
-                <p class="hero-description">
-                    Welcome to my personal space where I share my projects, thoughts, and experiences.
-                </p>
-                <div class="hero-buttons">
-                    <a href="#projects" class="btn btn-primary">View Projects</a>
-                    <a href="#blog" class="btn btn-secondary">Read Blog</a>
-                </div>
+        <div class="project-card">
+          <div class="project-header">
+            <h3>Volatility & Relative Value Research</h3>
+            <span class="project-tag">Quant</span>
+          </div>
+          <p class="project-description">
+            Explored cross-asset volatility relationships and peer grouping, with an emphasis on what information
+            actually moves prices and on what time scales. Built tooling to test hypotheses and track edge
+            with clear, reproducible metrics.
+          </p>
+          <div class="project-footer">
+            <div class="project-tech">
+              <span class="tech-tag">Time Series</span>
+              <span class="tech-tag">Statistical Testing</span>
+              <span class="tech-tag">Visualization</span>
             </div>
+            <a href="#contact" class="project-link">Ask for details →</a>
+          </div>
         </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 class="section-title">Projects</h2>
-            <p class="section-description">Here are some of my recent projects</p>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Project One</h3>
-                        <span class="project-tag">Web Development</span>
-                    </div>
-                    <p class="project-description">
-                        A responsive web application built with modern technologies.
-                        Features include user authentication, real-time updates, and more.
-                    </p>
-                    <div class="project-footer">
-                        <div class="project-tech">
-                            <span class="tech-tag">React</span>
-                            <span class="tech-tag">Node.js</span>
-                            <span class="tech-tag">MongoDB</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Project Two</h3>
-                        <span class="project-tag">Machine Learning</span>
-                    </div>
-                    <p class="project-description">
-                        A machine learning model for predictive analysis with high accuracy.
-                        Implements advanced algorithms and data visualization.
-                    </p>
-                    <div class="project-footer">
-                        <div class="project-tech">
-                            <span class="tech-tag">Python</span>
-                            <span class="tech-tag">TensorFlow</span>
-                            <span class="tech-tag">Pandas</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
-
-                <div class="project-card">
-                    <div class="project-header">
-                        <h3>Project Three</h3>
-                        <span class="project-tag">Mobile App</span>
-                    </div>
-                    <p class="project-description">
-                        A cross-platform mobile application with seamless user experience.
-                        Available on both iOS and Android platforms.
-                    </p>
-                    <div class="project-footer">
-                        <div class="project-tech">
-                            <span class="tech-tag">React Native</span>
-                            <span class="tech-tag">Firebase</span>
-                            <span class="tech-tag">Redux</span>
-                        </div>
-                        <a href="#" class="project-link">View Project →</a>
-                    </div>
-                </div>
+        <div class="project-card">
+          <div class="project-header">
+            <h3>AI in Education: Philosophy → Design Constraints</h3>
+            <span class="project-tag">EdTech</span>
+          </div>
+          <p class="project-description">
+            Wrote a philosophy of education paper analyzing what LLMs can and cannot provide as “teachers,” framed
+            around the conditions needed for warranted belief formation. Motivated by pedagogy and the practical
+            constraints of real instructional settings.
+          </p>
+          <div class="project-footer">
+            <div class="project-tech">
+              <span class="tech-tag">Philosophy of Education</span>
+              <span class="tech-tag">AI</span>
+              <span class="tech-tag">Curriculum</span>
             </div>
+            <!-- Replace with your PDF if you want it public -->
+            <a href="#writing" class="project-link">See writing →</a>
+          </div>
         </div>
-    </section>
+      </div>
+    </div>
+  </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="blog">
-        <div class="container">
-            <h2 class="section-title">Blog</h2>
-            <p class="section-description">Thoughts, tutorials, and insights</p>
-            <div class="blog-grid">
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="blog-date">December 15, 2025</span>
-                        <span class="blog-category">Tutorial</span>
-                    </div>
-                    <h3 class="blog-title">Getting Started with Modern Web Development</h3>
-                    <p class="blog-excerpt">
-                        An introduction to modern web development practices, tools, and frameworks
-                        that every developer should know in 2025.
-                    </p>
-                    <a href="#" class="blog-link">Read More →</a>
-                </article>
+  <!-- Writing Section (keeps your CSS that expects .blog styles) -->
+  <section id="writing" class="blog">
+    <div class="container">
+      <h2 class="section-title">Writing</h2>
+      <p class="section-description">
+        Short notes and longer-form work on markets, learning, and technical craft.
+      </p>
 
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="blog-date">December 10, 2025</span>
-                        <span class="blog-category">Experience</span>
-                    </div>
-                    <h3 class="blog-title">My Journey in Software Development</h3>
-                    <p class="blog-excerpt">
-                        Sharing my experiences, challenges, and lessons learned throughout my
-                        software development journey.
-                    </p>
-                    <a href="#" class="blog-link">Read More →</a>
-                </article>
+      <div class="blog-grid">
+        <article class="blog-card">
+          <div class="blog-meta">
+            <span class="blog-date">2025</span>
+            <span class="blog-category">Essay</span>
+          </div>
+          <h3 class="blog-title">AI in Education: What Counts as Teaching?</h3>
+          <p class="blog-excerpt">
+            An argument about the limits of LLM-based instruction and what genuine pedagogy requires
+            when learning is understood as warranted belief formation.
+          </p>
+          <!-- Replace with your PDF/URL -->
+          <a href="#" class="blog-link">Read →</a>
+        </article>
 
-                <article class="blog-card">
-                    <div class="blog-meta">
-                        <span class="blog-date">December 5, 2025</span>
-                        <span class="blog-category">Technical</span>
-                    </div>
-                    <h3 class="blog-title">Building Scalable Applications</h3>
-                    <p class="blog-excerpt">
-                        Best practices and architectural patterns for building scalable and
-                        maintainable applications.
-                    </p>
-                    <a href="#" class="blog-link">Read More →</a>
-                </article>
-            </div>
-        </div>
-    </section>
+        <article class="blog-card">
+          <div class="blog-meta">
+            <span class="blog-date">2025</span>
+            <span class="blog-category">Note</span>
+          </div>
+          <h3 class="blog-title">Quant Research Notes</h3>
+          <p class="blog-excerpt">
+            Lightweight writeups on hypothesis testing, correlation structure, and what changes when a model
+            leaves the notebook and enters a real workflow.
+          </p>
+          <!-- Replace with your URL (could be a GitHub README section) -->
+          <a href="#" class="blog-link">Read →</a>
+        </article>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 class="section-title">Get In Touch</h2>
-            <p class="section-description">Feel free to reach out for collaborations or just a friendly chat</p>
-            <div class="contact-content">
-                <div class="contact-links">
-                    <a href="mailto:contact@example.com" class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <span>Email</span>
-                    </a>
-                    <a href="https://github.com/kavitakar04" class="contact-item" target="_blank" rel="noopener">
-                        <span class="contact-icon">💻</span>
-                        <span>GitHub</span>
-                    </a>
-                    <a href="https://linkedin.com/in/kavitakar04" class="contact-item" target="_blank" rel="noopener">
-                        <span class="contact-icon">💼</span>
-                        <span>LinkedIn</span>
-                    </a>
-                    <a href="https://twitter.com/kavitakar04" class="contact-item" target="_blank" rel="noopener">
-                        <span class="contact-icon">🐦</span>
-                        <span>Twitter</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
+        <article class="blog-card">
+          <div class="blog-meta">
+            <span class="blog-date">2025</span>
+            <span class="blog-category">Build</span>
+          </div>
+          <h3 class="blog-title">Tools I Like Building</h3>
+          <p class="blog-excerpt">
+            Notes on building fast, human-centered technical systems: debuggability, evaluation,
+            and designing interfaces that reduce cognitive load.
+          </p>
+          <a href="#" class="blog-link">Read →</a>
+        </article>
+      </div>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Kavita Kar. All rights reserved.</p>
-        </div>
-    </footer>
+  <!-- Contact Section -->
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-description">
+        The easiest way to reach me is email. I’m also on GitHub and LinkedIn.
+      </p>
 
-    <script src="script.js"></script>
-</body>
-</html>
+      <div c
