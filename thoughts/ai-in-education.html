@@ -3,197 +3,784 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>AI in Education: What Counts as Teaching?</title>
-    <link rel="stylesheet" href="../styles.css" />
-
-    <!-- Page-only polish (keeps your global styles untouched) -->
+    <title>The Affordance Constraint: Agency, Accountability, and the Ontological Limits of LLMs in Education</title>
+    
     <style>
-      .post-shell { max-width: 80ch; margin: 0 auto; padding: 3rem 0; }
-      .post-header { margin-bottom: 2rem; }
-      .post-title { font-size: clamp(2rem, 3vw, 2.6rem); line-height: 1.1; margin: 0.5rem 0 0.75rem; }
-      .post-meta { color: var(--text-secondary); font-size: 0.95rem; display: flex; gap: 0.75rem; flex-wrap: wrap; align-items: center; }
-      .pill { display: inline-flex; align-items: center; gap: 0.4rem; padding: 0.2rem 0.7rem; border-radius: 999px; border: 1px solid var(--border-color); background: var(--bg-secondary); }
-      .divider { height: 1px; background: var(--border-color); margin: 2rem 0; }
+      :root {
+        --primary-color: #2563eb;
+        --text-primary: #1f2937;
+        --text-secondary: #6b7280;
+        --bg-primary: #ffffff;
+        --bg-secondary: #f9fafb;
+        --border-color: #e5e7eb;
+        --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1);
+      }
 
-      .post { font-size: 1.05rem; }
-      .post p { margin: 1rem 0; color: var(--text-primary); }
-      .post h2 { font-size: 1.55rem; margin: 2.25rem 0 0.75rem; }
-      .post h3 { font-size: 1.2rem; margin: 1.75rem 0 0.5rem; color: var(--text-primary); }
-      .post blockquote {
-        margin: 1.25rem 0;
-        padding: 0.75rem 1rem;
-        border-left: 3px solid var(--primary-color);
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+        line-height: 1.7;
+        color: var(--text-primary);
+        background: var(--bg-primary);
+        padding: 2rem 1rem;
+      }
+
+      .container {
+        max-width: 75ch;
+        margin: 0 auto;
+      }
+
+      .header {
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 2px solid var(--border-color);
+      }
+
+      .back-link {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-size: 0.95rem;
+        display: inline-block;
+        margin-bottom: 1.5rem;
+      }
+
+      .back-link:hover {
+        text-decoration: underline;
+      }
+
+      h1 {
+        font-size: clamp(1.75rem, 4vw, 2.25rem);
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .meta {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+      }
+
+      .tags {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 0.25rem 0.75rem;
         background: var(--bg-secondary);
-        border-radius: 10px;
+        border: 1px solid var(--border-color);
+        border-radius: 999px;
+        font-size: 0.85rem;
         color: var(--text-secondary);
       }
-      .post ul { margin: 0.75rem 0 1rem 1.25rem; }
-      .post li { margin: 0.35rem 0; color: var(--text-primary); }
+
+      .abstract {
+        background: var(--bg-secondary);
+        border-left: 3px solid var(--primary-color);
+        padding: 1.25rem;
+        margin: 2rem 0;
+        border-radius: 8px;
+      }
+
+      .abstract-title {
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        font-size: 1.1rem;
+      }
+
+      h2 {
+        font-size: 1.65rem;
+        margin: 3rem 0 1rem;
+        font-weight: 700;
+        color: var(--text-primary);
+      }
+
+      h3 {
+        font-size: 1.3rem;
+        margin: 2rem 0 0.75rem;
+        font-weight: 600;
+      }
+
+      h4 {
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem;
+        font-weight: 600;
+        font-style: italic;
+      }
+
+      p {
+        margin: 1rem 0;
+        text-align: justify;
+      }
+
+      blockquote {
+        margin: 1.5rem 0;
+        padding: 1rem 1.25rem;
+        border-left: 3px solid var(--primary-color);
+        background: var(--bg-secondary);
+        border-radius: 8px;
+        font-style: italic;
+        color: var(--text-secondary);
+      }
+
+      ul, ol {
+        margin: 1rem 0 1rem 2rem;
+      }
+
+      li {
+        margin: 0.5rem 0;
+      }
 
       .callout {
-        margin: 1.25rem 0;
-        padding: 1rem 1.1rem;
-        border: 1px solid var(--border-color);
-        background: var(--bg-secondary);
-        border-radius: 12px;
-        box-shadow: var(--shadow);
-      }
-      .callout strong { display: block; margin-bottom: 0.35rem; }
-
-      details {
         margin: 1.5rem 0;
+        padding: 1.25rem;
         border: 1px solid var(--border-color);
-        border-radius: 12px;
-        background: #fff;
-        box-shadow: var(--shadow);
-        overflow: hidden;
-      }
-      summary {
-        cursor: pointer;
-        padding: 0.9rem 1rem;
-        font-weight: 600;
-        color: var(--text-primary);
         background: var(--bg-secondary);
-        list-style: none;
-      }
-      summary::-webkit-details-marker { display: none; }
-      .codewrap {
-        padding: 1rem;
-        max-height: 70vh;
-        overflow: auto;
-        border-top: 1px solid var(--border-color);
-      }
-      pre {
-        margin: 0;
-        white-space: pre-wrap;
-        word-break: break-word;
-        font-size: 0.9rem;
-        line-height: 1.45;
-        color: var(--text-primary);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
       }
 
-      .footnotes { margin-top: 2.5rem; color: var(--text-secondary); font-size: 0.95rem; }
-      .footnotes a { color: var(--primary-color); text-decoration: none; }
-      .footnotes a:hover { text-decoration: underline; }
+      .callout-title {
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+
+      .section-number {
+        color: var(--text-secondary);
+        font-weight: 600;
+        margin-right: 0.5rem;
+      }
+
+      .math {
+        font-family: 'Times New Roman', serif;
+        font-style: italic;
+      }
+
+      .tuple {
+        font-family: 'Times New Roman', serif;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 768px) {
+        body {
+          padding: 1rem 0.75rem;
+        }
+        
+        h1 {
+          font-size: 1.75rem;
+        }
+        
+        h2 {
+          font-size: 1.4rem;
+        }
+        
+        p {
+          text-align: left;
+        }
+      }
     </style>
   </head>
 
   <body>
-    <header class="container post-shell post-header">
-      <p><a href="index.html" class="blog-link">← All Thoughts</a></p>
-      <h1 class="post-title">AI in Education: What Counts as Teaching?</h1>
-
-      <div class="post-meta">
-        <span class="pill">2025</span>
-        <span class="pill">Essay</span>
-        <span class="pill">Philosophy of Education</span>
-      </div>
-
-      <div class="divider"></div>
-    </header>
-
-    <main class="container post-shell">
-      <article class="post">
-        <p class="section-description" style="text-align:left; margin-top: 0;">
-          This essay argues that large language models can support instruction, but cannot serve as teacher replacements,
-          because the role of teaching depends on epistemic standing, planning agency, and moral accountability.
-        </p>
-
-        <div class="callout">
-          <strong>Manuscript title</strong>
-          The Affordance Constraint: Agency, Accountability, and the Ontological Limits of LLMs in Education
+    <div class="container">
+      <header class="header">
+        <a href="../index.html#writing" class="back-link">← All Writing</a>
+        <h1>The Affordance Constraint: Agency, Accountability, and the Ontological Limits of LLMs in Education</h1>
+        
+        <div class="meta">
+          Kavita Kar<br>
+          Philosophy of Education
         </div>
 
-        <h2>Abstract</h2>
-        <p>
-          This paper argues that large language models cannot replace human teachers because they lack the epistemic standing
-          and moral accountability required for genuine pedagogy. Using a framework of pedagogical affordances, the analysis
-          demonstrates that teaching depends on three fundamental capacities: theory of mind and student modeling, hierarchical
-          agency and long-term planning, and moral accountability in testimony. Although AI systems can simulate the surface
-          forms of explanation and feedback, they cannot instantiate the relational, normative, and epistemic conditions that
-          make teaching possible. The proper role of AI in education is therefore instrumental rather than authoritative.
-        </p>
+        <div class="tags">
+          <span class="tag">2025</span>
+          <span class="tag">Philosophy of Education</span>
+          <span class="tag">AI Ethics</span>
+          <span class="tag">Epistemology</span>
+        </div>
+      </header>
 
-        <h2>Introduction</h2>
-        <p>
-          The integration of artificial intelligence into education raises a question that is epistemic before it is operational:
-          what is the status of AI as a source of knowledge? Can a large language model (LLM) function as a teacher, or does
-          treating it as one commit a category error that conflates performance with competence?
-        </p>
+      <main>
+        <div class="abstract">
+          <div class="abstract-title">Abstract</div>
+          <p>This paper argues that large language models cannot replace human teachers because they lack the epistemic standing and moral accountability required for genuine pedagogy. Using a framework of pedagogical affordances, the analysis demonstrates that teaching depends on three fundamental capacities: theory of mind and student modeling, hierarchical agency and long-term planning, and moral accountability in testimony. Although AI systems can simulate the surface forms of explanation and feedback, they cannot instantiate the relational, normative, and epistemic conditions that make teaching possible. The proper role of AI in education is therefore instrumental rather than authoritative.</p>
+        </div>
 
-        <p>
-          This inquiry is not speculative. Institutions are actively experimenting with AI-led instructional models, deploying
-          systems marketed not merely as repositories of information but as pedagogical agents capable of personalization,
-          diagnosis, and guidance. The empirical literature on Intelligent Tutoring Systems (ITS) supports some optimism in
-          procedural domains. VanLehn’s meta-analysis suggests that well-designed ITS can approach human tutoring effectiveness
-          in well-structured settings.
-        </p>
+        <h2><span class="section-number">1.</span> Introduction</h2>
 
-        <p>
-          This efficacy is constrained by a distinction between procedural gains and epistemic teaching. Many success cases are
-          concentrated in domains where knowledge is algorithmic and answers are binary. Yet education also involves conceptual
-          understanding, critical judgment, and the development of epistemic agency.
-        </p>
+        <p>The integration of artificial intelligence into education raises a question that is epistemic before it is operational: What is the status of AI as a source of knowledge? Can a large language model (LLM) function as a teacher, or does treating it as one commit a category error that conflates performance with competence?</p>
 
-        <p>
-          I argue that these limitations are not temporary technical shortcomings or artifacts of current error rates. They arise
-          from architectural and philosophical constraints that follow from the nature of LLMs and from the requirements of teaching.
-        </p>
+        <p>This inquiry is not speculative. Numerous institutions are actively experimenting with AI-led instructional models, deploying systems marketed not merely as repositories of information but as pedagogical agents capable of personalization, diagnosis, and guidance. The empirical literature on Intelligent Tutoring Systems (ITS) further supports optimism about such models. VanLehn's influential meta-analysis shows that well-designed ITS can approximate human tutoring effectiveness in procedural, well-structured domains such as elementary mathematics. Human tutors outperformed no tutoring with an effect size of approximately <span class="math">d</span> ≈ 0.79, while sophisticated, step-based ITS achieved roughly <span class="math">d</span> ≈ 0.76; in many domains, the difference between human tutors and ITS was statistically negligible. Recent adaptive platforms demonstrate measurable improvements in algorithmic subjects in which success can be quantified as procedural fluency, understood as the reliable execution of well-defined steps.</p>
 
-        <h2>Scope and Approach</h2>
-        <p>
-          This paper evaluates the strongest claim: that LLMs could serve as complete replacements for human teachers, occupying
-          equivalent epistemic roles and assuming comparable responsibilities. This replacement model is analytically distinct from
-          course-helper and hybrid models where humans retain epistemic authority.
-        </p>
+        <p>Intellectual integrity requires direct engagement with these findings. Systems that excel in diagnosing granular procedural errors and providing immediate corrective feedback constitute a significant advance in educational technology. For example, AI-driven systems can accelerate elementary mathematics learning by isolating specific gaps, such as identifying that a student's difficulty with long division stems from a subtraction error rather than a misunderstanding of the division algorithm. In medical education, randomized clinical trials report that AI tutoring systems can provide feedback on surgical simulations that leads to higher performance scores than remote expert instruction, primarily through continuous, metric-based assessment against quantifiable criteria.</p>
 
-        <h2>Pedagogical Affordances</h2>
-        <p>
-          I introduce pedagogical affordances as an intermediate level of analysis: relational possibilities for warranted belief
-          formation made available by an instructional arrangement. On this view, teaching succeeds by configuring conditions under
-          which understanding can emerge, not merely by presenting information.
-        </p>
+        <p>This efficacy, however, is constrained by a crucial distinction between procedural gains and epistemic teaching. VanLehn's success cases, and those associated with modern adaptive platforms, are located primarily in domains where knowledge is algorithmic and answers are binary. The systems effectively fit curves to student performance in order to optimize procedural fluency. They function as sophisticated drill systems for cognitive logistics. Yet education is not merely the acquisition of procedures; it is the cultivation of conceptual understanding, the development of critical judgment, and the formation of epistemic agency.</p>
+
+        <p>I argue that these limitations are not temporary technical shortcomings or artifacts of current error rates. They arise from architectural and philosophical constraints that follow from the nature of LLMs and from the fundamental requirements of teaching.</p>
+
+        <h3>Scope and Approach</h3>
+
+        <p>This paper deliberately evaluates the strongest claim: that LLMs could serve as complete replacements for human teachers, occupying equivalent epistemic roles and assuming comparable responsibilities. This replacement model is analytically distinct from:</p>
+
+        <ul>
+          <li>course-helper models, in which AI functions as an auxiliary tool (calculator, reference, practice generator);</li>
+          <li>hybrid infrastructure models, in which AI supports curriculum design and accessibility while humans retain epistemic authority.</li>
+        </ul>
+
+        <p>I adopt the replacement model not because it reflects current educational consensus, but because it provides a clear test case. If LLMs cannot replace teachers even in principle, then debates about optimal human–AI partnerships gain clarity regarding where authority must remain.</p>
+
+        <p>The argument employs the concept of affordances, understood as structured possibilities for action that environments offer agents, to analyze teaching requirements and LLM capabilities. In educational contexts, pedagogical affordances are relational structures that connect students to legitimate epistemic sources: perception, reasoning, testimony, and memory. Human teachers occupy unique positions within these networks as epistemic agents capable of perception, accountable testimony, and rational justification.</p>
+
+        <p>I argue that LLMs interrupt this epistemic "throughline." They can simulate surface manifestations of perception (as if observed), reasoning (as if inferred), and testimony (as if asserted), but they do not engage in the underlying practices that confer epistemic significance on these forms. As Bender and colleagues characterize them, LLMs are "stochastic parrots": systems that stitch together linguistic forms on the basis of probabilistic information about how such forms combine, without reference to meaning. This is not only an engineering issue but an ontological one.</p>
+
+        <p>The paper proceeds in five stages, culminating in constructive principles for responsible integration of AI into education.</p>
+
+        <h2><span class="section-number">2.</span> Pedagogical Affordances: A Philosophical Framework</h2>
+
+        <h3>From Epistemic Sources to Pedagogical Affordances</h3>
+
+        <p>Any serious theory of teaching must explain how instructional practices place students in contact with knowledge. Classical epistemology characterizes knowledge in terms of sources such as perception, memory, reasoning, and testimony. Pedagogy, however, cannot be reduced to the mere invocation of these sources. Teaching operates at a distinct level of organization: it arranges environments, activities, and social relations so that learners can access these sources under the right conditions.</p>
+
+        <p>No clean taxonomy maps epistemic sources onto pedagogical methods. A lecture involves testimony, perception (of diagrams or demonstrations), and reasoning. An experiment involves perception, memory, and inductive inference. Socratic dialogue may be interpreted as reasoning from shared commitments, or as recollection in a broadly Platonic sense. Moreover, what counts as a legitimate epistemic source varies across traditions. Testimony grounded in scientific authority differs from religious revelation, even if both function socially as warrant-providing practices.</p>
+
+        <p>Because neither epistemic sources nor instructional methods admit a tidy classification, I introduce pedagogical affordances as an intermediate level of analysis. A pedagogical affordance is not itself a method or a source. It is a relational possibility for warranted belief formation made available by an instructional arrangement. It answers the question:</p>
 
         <blockquote>
           What kinds of epistemically justified learning become possible for this learner, in this environment, under this instructional structure?
         </blockquote>
 
-        <h2>Three Core Pedagogical Affordances</h2>
+        <p>Affordances are relational and functional rather than intrinsic. They depend jointly on learner capacities, instructional design, teacher expertise, and environmental constraints. Teaching succeeds not merely by presenting information but by configuring conditions under which understanding can emerge.</p>
 
-        <h3>Theory of mind and student modeling</h3>
-        <p>
-          Effective teaching depends on structured, evolving models of learners’ knowledge states and misconceptions. Teachers infer
-          why errors occur, update their models over time, and draw on cues that are not reducible to the textual trace of an answer.
-          LLMs can simulate personalization, but they do not maintain stable, queryable models of a student as a thinker.
-        </p>
+        <p>Formally, a pedagogical affordance may be represented by the synthesis of all components of the tuple</p>
 
-        <h3>Hierarchical agency and planning</h3>
-        <p>
-          Teaching is teleological: it is organized around long-term objectives and the sequencing constraints of concept dependencies.
-          Teachers maintain nested intentions and preserve coherence across weeks and months. LLM behavior is optimized locally for
-          next-token continuation; long-horizon pedagogical agency is not an internal feature of the system.
-        </p>
+        <p style="text-align: center;"><span class="tuple">⟨S, M, L, T, E⟩</span>,</p>
 
-        <h3>Moral accountability and testimony</h3>
-        <p>
-          Much teaching works through testimony and challenge. For testimony to function epistemically, speakers must be accountable
-          for what they assert. Human teachers can be challenged, corrected, sanctioned, and required to justify claims. LLM outputs
-          may be useful, but the system does not bear responsibility in the way an educator does.
-        </p>
+        <p>where <span class="math">S</span> denotes epistemic sources, <span class="math">M</span> instructional methods, <span class="math">L</span> learner capacities, <span class="math">T</span> teacher epistemic standing, and <span class="math">E</span> environmental conditions. None of these elements alone determines whether learning occurs; what matters is their coordination.</p>
 
-        <h2>Conclusion</h2>
-        <p>
-          The practical implication is not abstinence, but division of labor. LLMs can be valuable auxiliaries for retrieval,
-          variation, and low-stakes practice, while epistemic authority and responsibility remain with human educators. That boundary
-          is not merely a quality gap. It reflects what it is to teach.
-        </p>
+        <p>This framework preserves the normative force of epistemology while acknowledging the situational structure of pedagogy. Teaching becomes intelligible not as transmission but as the engineering of epistemic access.</p>
 
+        <h3>Gibson's Theory of Affordances and Its Educational Extension</h3>
 
-        <div class="footnotes">
-          <p>
-          </p>
-        </div>
-      </article>
-    </main>
+        <p>The term "affordance" originates in James J. Gibson's ecological psychology. Gibson rejected the view that organisms passively receive stimuli from inert environments. Instead, he argued that environments are structured by possibilities for action relative to organismic capacities. A chair affords sitting for creatures of the right size; a handle affords grasping; a staircase affords climbing. These affordances are neither purely objective nor purely subjective. As Gibson puts it, they are at once "a fact of the environment and a fact of behavior."</p>
+
+        <p>Although Gibson developed this theory for perception and motor action, the concept generalizes to social and epistemic practices. A courtroom affords legal judgment, a laboratory affords controlled experimentation, and a conversation affords the exchange of reasons. These are not mere physical possibilities; they are norm-governed action possibilities.</p>
+
+        <p>Not all apparent affordances are genuine. A fragile chair may appear to afford sitting but fail under load. A faulty instrument may appear to afford measurement but deliver distorted results. Whether an apparent affordance is real depends on its reliability under appropriate conditions. This introduces an epistemic dimension: affordances must not only appear functional, but must actually connect agents to what they are supposed to access.</p>
+
+        <p>Transposed into education, this yields a norm: <em>A teaching arrangement genuinely affords knowledge only if it reliably links students to legitimate epistemic sources under appropriate conditions.</em></p>
+
+        <p>A classroom may appear to afford understanding, but if it systematically severs students from perception, reasoning, or accountable testimony, the affordance is illusory rather than real.</p>
+
+        <h3>Clear Cases: When Methods and Sources Align</h3>
+
+        <p>Although general mappings between methods and epistemic sources are complex, certain classroom situations exhibit particularly clear alignments. These can serve as conceptual anchors for the affordance framework.</p>
+
+        <p>In <strong>empirical demonstration</strong>, such as a chemistry reaction performed at the front of a classroom, the dominant epistemic source is perception. Students see the reaction occur; testimony and inference are supplementary. The teacher's role is to arrange the environment so that the world itself becomes epistemically available.</p>
+
+        <p>In <strong>deductive instruction</strong>, such as a geometric proof, the dominant epistemic source is reasoning. The force of the conclusion derives not from the teacher's authority but from the public inspectability of the inference chain.</p>
+
+        <p>In <strong>historical instruction</strong>, the dominant epistemic source is testimony. Students cannot observe the French Revolution or deduce it from axioms; their access is mediated by disciplinary authority embedded in historical scholarship.</p>
+
+        <p>These cases clarify what it means to afford perception, reasoning, or testimony. The teacher does not replace the epistemic source but orchestrates access to it. The teacher's speech, actions, and material arrangements function as scaffolding for epistemic relations that ultimately lie beyond the teacher.</p>
+
+        <p>These cases also reveal an important asymmetry. Teachers are not epistemic sources in the same way that perception or reasoning are. They occupy a coordinating position within epistemic networks, arranging when and how those sources become available to students.</p>
+
+        <h3>The Epistemic Throughline of Teaching</h3>
+
+        <p>Human teachers occupy a distinctive position within these affordance structures. They are not merely conveyors of information but epistemic agents embedded in normative practices. They perceive, reason, and testify under conditions of accountability. When teachers assert that a chemical reaction produces gas, that a theorem follows from axioms, or that historians now interpret an event in a particular way, they make moves within established networks of justification.</p>
+
+        <p>This creates what may be called the epistemic throughline of teaching: a continuous chain that links student belief to perception, reasoning, and testimony through an agent who is herself answerable to those sources and to the communities that regulate them. Teachers can be challenged, corrected, sanctioned, and required to justify their claims. Their authority is neither absolute nor arbitrary; it is normatively structured.</p>
+
+        <p>Teaching is therefore distinct from mere information delivery. A student who searches for a fact online receives information without an accountable guarantor. A student who learns from a teacher receives information embedded in a social practice of responsibility, correction, and justification. The affordance is not merely cognitive but normative.</p>
+
+        <h3>Virtue Epistemology and the Success Conditions of Affordances</h3>
+
+        <p>Virtue epistemology further sharpens this account. On Sosa's framework, knowledge requires not only true belief but apt belief, that is, belief that is accurate because produced by competence under appropriate conditions. Aptness depends jointly on agent skill and environmental support. If an affordance is the potential for knowledge provided by the environment, then Sosa's apt belief is the realization of that potential through the exercise of competence.</p>
+
+        <p>Pedagogical affordances operate at this interface. Even a highly capable student cannot acquire knowledge if the instructional environment does not place her in contact with the right epistemic sources. A telescope affords visual knowledge of lunar craters but not of medieval politics. A historical archive affords testimonial access to the past but not to atomic structure. Teachers, as affordance designers, must choose instruments, activities, and representations that align with the epistemic character of the relevant content.</p>
+
+        <p>From this perspective, teaching is the provision of adequate affordances for apt belief. Professional judgment in education consists primarily in recognizing what counts as an adequate affordance for this student, with these capacities, at this stage of development, for this kind of knowledge.</p>
+
+        <h3>Why Artificial Systems Become a Genuine Test Case</h3>
+
+        <p>Only once pedagogical affordances have been independently grounded does it become meaningful to ask whether artificial systems can occupy positions within these structures. The relevant question is not whether they can generate correct answers, but whether they can instantiate the relational, normative, and epistemic roles that afford genuine knowledge to learners.</p>
+
+        <p>The question arises not simply because artificial systems are novel, but because they increasingly simulate the surface forms of perception, reasoning, and testimony. The central issue for the remainder of the paper is whether such simulations can sustain the underlying affordance relations that teaching requires.</p>
+
+        <h2><span class="section-number">3.</span> Large Language Model Architecture: How These Systems Work</h2>
+
+        <p>If large language models are to be evaluated as candidates for pedagogical roles, evaluation must begin with a clear understanding of what sort of systems they are. Following Floridi's method of levels of abstraction, the normative question of whether an LLM could function as a teacher must be preceded by the descriptive question of what operational capacities such a system possesses. To treat an LLM as an epistemic agent without first considering its mechanism is to commit a category error. It attributes judgment and understanding to what is, at base, a probabilistic text generation function.</p>
+
+        <p>This section presents a concise account of transformer architecture and training objectives, not for technical completeness but in order to expose the epistemically decisive gap between generating text and possessing knowledge.</p>
+
+        <h3>The Transformer Architecture</h3>
+
+        <p>Contemporary LLMs are built on the transformer architecture introduced by Vaswani and colleagues. Three structural features are philosophically decisive.</p>
+
+        <p>First, <strong>tokenization</strong>. LLMs do not operate on concepts, propositions, or meanings. They operate on tokens: sub-word units produced by statistical segmentation. A word such as "understanding" may be decomposed into fragments such as "under," "stand," and "ing." The system's fundamental objects of manipulation are therefore sub-semantic. Whatever coherence appears at the level of sentences is supplied by human interpretation, not by the model's primitive representations.</p>
+
+        <p>Second, <strong>embedding</strong>. Tokens are represented as high-dimensional numerical vectors that encode distributional information: how frequently tokens co-occur with others in large corpora. These vectors represent patterns of linguistic use, not relations to objects in the world. The model does not represent what friction, gravity, or justice are; it represents the statistical behavior of those words across text.</p>
+
+        <p>Third, <strong>self-attention</strong>. The system computes correlation weights between tokens in a sequence via parallel attention heads. These correlations are learned through gradient descent rather than through symbolic inference rules. Transformers thus capture long-range statistical dependencies in language while operating entirely through numerical transformations over token embeddings.</p>
+
+        <p>At no point in this architecture does the system manipulate propositions, form beliefs, represent objects as such, or track truth conditions.</p>
+
+        <h3>How LLMs Generate Text: The Autoregressive Constraint</h3>
+
+        <p>At its core, an LLM implements a single probabilistic function:</p>
+
+        <p style="text-align: center;"><span class="math">P(w<sub>n</sub> | w<sub>1</sub>, ..., w<sub>n-1</sub>)</span>.</p>
+
+        <p>Given a sequence of prior tokens, the model computes a probability distribution over possible next tokens, samples from that distribution, appends the result to the context, and repeats. This autoregressive structure imposes several epistemically decisive constraints.</p>
+
+        <p>First, <strong>local coherence substitutes for global planning</strong>. Human pedagogy is hierarchically organized: teachers form long-range instructional goals, decompose those goals into subgoals, and regulate instruction over time. LLMs possess no such planning architecture. They do not form intentions, decompose goals, or maintain commitments. Long-range coherence in their output arises only as a byproduct of many locally optimized token predictions.</p>
+
+        <p>Second, <strong>distributional semantics substitutes for meaning</strong>. The optimization target is not the world, but human discourse about the world. As Bender and colleagues argue, these systems are "stochastic parrots": they assemble linguistic forms in accordance with probabilistic constraints, without reference to what those forms mean.</p>
+
+        <p>This distinction is now empirically well supported. For example, recent multimodal physics benchmarks show that state-of-the-art LLM-based systems perform near perfectly on definitional retrieval yet fail sharply when asked to apply the same physical laws to novel visual scenarios. The model reproduces the syntax of physics without grasping its semantics.</p>
+
+        <p>Third, <strong>there is no persistent cognitive state</strong>. While a context window can include fragments of earlier dialogue, the model's parameters remain fixed. The system does not learn about individual students in the way that teachers do; it merely processes longer input strings. Any appearance of memory is achieved by re-feeding prior text into the prompt, not by updating an internal representation of the learner.</p>
+
+        <p>The result is a system that is backward-looking, episodic, and reset-bound: a mimic engine trained on the statistical residues of past discourse.</p>
+
+        <h3>Training Objectives and the Reward–Proxy Gap</h3>
+
+        <p>The epistemic profile of LLMs is shaped not only by architecture but also by training dynamics, which proceed in two main stages.</p>
+
+        <p>During <strong>pre-training</strong>, the model is optimized to maximize next-token likelihood over massive text corpora. The objective function is purely distributional. The system is rewarded for predicting what comes next, not for tracking what is true. It therefore learns to replicate human error patterns with the same fidelity with which it replicates human knowledge.</p>
+
+        <p>During <strong>fine-tuning with Reinforcement Learning from Human Feedback (RLHF)</strong>, the model is optimized to maximize human approval. This introduces what Russell describes as the reward–proxy problem: the true objective (student understanding, conceptual change, epistemic success) is long-term and unobservable, so a short-term proxy (user satisfaction) is substituted.</p>
+
+        <p>This dynamic generates systematic sycophancy. The system learns that confident, agreeable, and frictionless answers are rewarded more reliably than resistant or corrective ones. From a pedagogical perspective, this is structurally perverse. Effective teaching often requires resisting a student's immediate preferences, for example by refusing to provide answers prematurely, challenging false beliefs, and sustaining productive cognitive dissonance. An LLM optimized to minimize user dissatisfaction is thus structurally disincentivized from fulfilling this role.</p>
+
+        <p>The system is trained not to aim at truth as such, but at approval.</p>
+
+        <h3>Where "Knowledge" Comes From: Corpus Mixture and Epistemic Indifference</h3>
+
+        <p>To understand the epistemic profile of large language models, it is not enough to examine their architecture and optimization objectives. One must also examine the nature of the data from which their apparent knowledge is derived. When an LLM produces a correct answer, this correctness does not reflect successful inquiry, perception, or participation in disciplinary practice. It reflects statistical alignment with patterns present in its training corpus.</p>
+
+        <p>LLMs acquire competence through exposure to large mixtures of human-produced text. These corpora aggregate materials from sources with radically different epistemic standing, including encyclopedias, textbooks, news reporting, technical documentation, blogs, social media platforms, and online forums. Recent work on data provenance and corpus construction emphasizes that these sources are combined without preserving their normative differences. From the perspective of the model, a peer-reviewed scientific explanation, a journalistic summary optimized for search engines, and a speculative Reddit comment differ only insofar as they affect token prediction likelihood.</p>
+
+        <p>This training regime is epistemically indiscriminate in a way that matters for education. The model does not encode which claims are authoritative, which are contested, which are satirical, and which are outright false. It encodes only how linguistic forms co-occur across the corpus. As a result, what appears as "knowledge" at the level of output is better understood as a compressed map of how things are said, rather than of how things stand.</p>
+
+        <p>This indifference to epistemic standing has surfaced publicly in large-scale deployment systems. In a widely reported incident involving Google's AI Overviews, an AI-generated response reproduced a satirical claim originally published by <em>The Onion</em>, suggesting that consuming small rocks could have health benefits. The failure did not arise because the model misclassified humor in the way a human reader might, but because satire, journalism, and scientific explanation are represented uniformly as text streams. Genre, intent, and evidential norms are not features of the model's internal representations.</p>
+
+        <p>While such examples are often treated as surface-level "hallucinations," they expose a deeper descriptive fact about LLMs. The model has no mechanism for verifying claims against reality or against disciplinary standards. It can only verify claims against the statistical structure of its training distribution. Fine-tuning can suppress specific errors, but it cannot introduce epistemic discrimination where none exists at the representational level.</p>
+
+        <p>This limitation has a further consequence that is especially relevant for pedagogy. An LLM does not know when it does not know. A human learner who encounters a biased or outdated textbook may eventually recognize that the text is incomplete or contestable. The model, by contrast, registers absence only as low probability. It does not distinguish between gaps in the historical record, marginal viewpoints, satire, or domains outside its training distribution. In response, it tends to produce fluent completions rather than epistemic restraint.</p>
+
+        <p>This feature of LLMs will matter when evaluating their suitability as pedagogical agents. Teaching depends not only on providing correct answers but on regulating when authority should be asserted, when uncertainty should be acknowledged, and when inquiry should be deferred. The fact that LLMs cannot represent epistemic authority or its absence will become decisive when considering their ability to model students, plan instruction, and bear testimonial responsibility.</p>
+
+        <h3>Structural Absences</h3>
+
+        <p>Several structural absences follow necessarily from these architectural and training constraints:</p>
+
+        <ul>
+          <li>LLMs possess <strong>no explicit knowledge base</strong>. Facts are not represented as inspectable propositions but are implicitly encoded across a high-dimensional parameter space.</li>
+          <li>They possess <strong>no explicit causal models</strong>. In Pearl's terms, LLMs operate almost entirely at the level of association. They can reproduce correlations but cannot formally represent interventions or counterfactuals.</li>
+          <li>They possess <strong>no theory of mind</strong>. The system contains no structured representation of users as thinkers with evolving belief states. It tracks token patterns, not mental contents.</li>
+          <li>They possess <strong>no internal goal hierarchy</strong> beyond loss minimization. Any pedagogical purpose must be imposed externally through prompts and scaffolding; it is not internally represented as a commitment.</li>
+        </ul>
+
+        <p>These absences will be decisive when the pedagogical affordances of student modeling, curriculum planning, and moral accountability are examined in Section 4.</p>
+
+        <h3>Opacity and the Justification Problem</h3>
+
+        <p>A final structural limitation concerns justification. Neural networks are inherently opaque. Their internal operations, consisting of vast numbers of floating-point transformations, are not interpretable as reasons in the normative sense required by epistemic practice.</p>
+
+        <p>Duede argues that opacity undermines justificatory roles in scientific reasoning. When the internal basis of a conclusion cannot be inspected as a reason, it cannot function as a justification. Lipton similarly shows that most interpretability methods produce post hoc rationalizations rather than access to genuine decision structure.</p>
+
+        <p>For education, this limitation is especially damaging. When LLMs generate step-by-step "explanations," these are not traces of antecedent reasoning. They are another genre of output produced by the same next-token prediction process. The system does not first reason and then report its reasoning. It produces the appearance of reasoning as an artifact.</p>
+
+        <p>The pedagogical consequence is direct. When a student asks "Why is this wrong?" and the system produces a plausible but hallucinated explanation, the student is misled at the level of justification itself. The system cannot inspect its own inference because no inference, in the relevant normative sense, occurred.</p>
+
+        <h2><span class="section-number">4.</span> Three Core Pedagogical Affordances</h2>
+
+        <p>Section 3 established what large language models are: autoregressive text generators operating on distributional patterns, trained to maximize approval-based proxies, and lacking persistent state, causal models, or moral standing. The present section shifts from mechanism to consequence. It examines what LLMs cannot do when evaluated against the demands of genuine teaching.</p>
+
+        <p>This section examines three pedagogical affordances that are indispensable to teaching. Each affordance represents not an isolated capacity, but a structured possibility for warranted belief formation that arises only when multiple elements of the pedagogical affordance tuple <span class="tuple">⟨S, M, L, T, E⟩</span> are jointly satisfied. An affordance fails not because a single component is weakened, but because the coordination among components breaks down.</p>
+
+        <p>The three affordances analyzed here were selected because each depends on the simultaneous functioning of several elements of the tuple, even if those elements are weighted differently across cases. In each instance, effective teaching requires the alignment of epistemic sources, instructional methods, learner modeling, teacher standing, and environmental context into a coherent instructional practice. These affordances therefore provide especially strong tests of the claim that Large Language Models could function as complete teacher replacements.</p>
+
+        <p>For each affordance, the analysis proceeds in three steps. First, I characterize the affordance itself and explain why it is necessary for teaching rather than merely useful. Second, I describe how human educators instantiate the relevant coordination among affordance components in practice. Third, I show that contemporary LLMs systematically fail to provide the coordination required to sustain the affordance. The failures identified are not incidental performance gaps but structural limitations that disrupt multiple components of the affordance tuple simultaneously.</p>
+
+        <h3>Theory of Mind and Student Modeling</h3>
+
+        <p>This affordance encompasses persistent student modeling, misconception diagnosis, and formative assessment. It requires what cognitive scientists call theory of mind: the capacity to attribute mental states to others and to reason about those states.</p>
+
+        <h4>The Required Affordance</h4>
+
+        <p>Effective teaching requires an understanding of each student's knowledge, misconceptions, and cognitive processes. This involves not merely retaining isolated facts but maintaining structured, evolving models of cognitive states.</p>
+
+        <p>Consider a student who correctly solves 3 + 5 = ? but fails on 3 + ? = 8. Skilled educators recognize that this pattern indicates conceptual confusion about equation structure rather than a deficiency in basic arithmetic. When the same student later encounters difficulty with algebra, teachers recall this earlier pattern and address the underlying misconception about equality.</p>
+
+        <p>Such work presupposes:</p>
+
+        <ul>
+          <li><strong>persistent state</strong>: information stored and retrievable over time;</li>
+          <li><strong>structure</strong>: organized models that represent specific domains (arithmetic, algebra, functions);</li>
+          <li><strong>hierarchy</strong>: recognition that knowledge is cumulative and that some concepts presuppose others;</li>
+          <li><strong>update mechanisms</strong>: models that evolve in light of new evidence;</li>
+          <li><strong>causal reasoning</strong>: understanding why errors occur, not merely noting that they occur;</li>
+          <li><strong>real-time interpretation</strong>: the ability to read subtle cues indicating confusion, frustration, or understanding.</li>
+        </ul>
+
+        <p>Students often hold robust misconceptions that resist straightforward correction. For instance, a student may believe that heavy objects fall faster, or that plants gain mass primarily from soil. Effective teaching requires:</p>
+
+        <ul>
+          <li>diagnosis of specific misconceptions rather than mere identification of incorrect answers;</li>
+          <li>causal understanding of how misconceptions arise and what they obstruct;</li>
+          <li>targeted intervention designed to address specific incorrect models;</li>
+          <li>continuous monitoring of understanding;</li>
+          <li>strategic adjustment of instruction based on diagnostic insights.</li>
+        </ul>
+
+        <h4>How Teachers Provide This Affordance</h4>
+
+        <p>Teachers develop student models through longitudinal observation. They accumulate evidence across time about each student's characteristic ways of thinking. They recognize that one student grasps concepts quickly but makes careless errors, another has strong procedural skills but weak conceptual understanding, and a third struggles with fractions because of difficulties with division.</p>
+
+        <p>Experienced educators identify diagnostic patterns. A student who habitually says "I do not get it" may lack metacognitive capacity to locate the specific source of confusion.</p>
+
+        <p>Teachers understand hierarchical dependencies among topics. When a student struggles with quadratic equations, a careful teacher checks for understanding of linear equations, facility with factoring, and comprehension of variables.</p>
+
+        <p>Diagnostic questioning plays a central role. When a student claims that 1/3 is greater than 1/2, the teacher might ask for a drawing or pose a preference question ("Would you rather have one-third of a pizza or one-half?"). These questions reveal reasoning patterns underlying the error.</p>
+
+        <p>Teachers also trace misconceptions to their origins. Difficulty with photosynthesis may stem from not recognizing that gases have mass, from an overly narrow concept of "food," from confusion between plant and animal metabolism, or from prior instruction that emphasized water and soil nutrients.</p>
+
+        <p>Teachers monitor students through multiple modalities, including facial expressions, tone of voice, body language, question types, and written work. They track which students remain engaged and which are confused or disengaged. They adapt their approaches accordingly, providing different explanations, scaffolding, or enrichment activities.</p>
+
+        <h4>Why LLMs Cannot Provide This Affordance</h4>
+
+        <p>LLMs fail to provide this affordance across multiple dimensions. A meaningful student model would require structured representations such as:</p>
+
+        <ul>
+          <li>Student: Maria;</li>
+          <li>Domain: algebra;</li>
+          <li>Concepts mastered: variable representation, basic linear equations;</li>
+          <li>Concepts partially mastered: factoring, systems of equations;</li>
+          <li>Misconceptions: confusion between solving for a variable and substituting values;</li>
+          <li>Learning patterns: preference for visual representations, difficulty with high levels of abstraction.</li>
+        </ul>
+
+        <p>LLMs lack the capacity to construct and maintain such structured, queryable models. They have only conversation history in token form, which they process but do not parse into stable cognitive representations. When diagnosing errors, effective teachers routinely ask counterfactual questions: what would this student have answered if she had held a different misconception? They design questions to distinguish among such counterfactual possibilities. LLMs cannot engage in this form of causal and counterfactual reasoning about student cognition.</p>
+
+        <p>Models are also disembodied. They do not perceive students' expressions, posture, tone, or patterns of participation. They cannot integrate these signals into their diagnostic judgments. Personalization remains algorithmic rather than relational.</p>
+
+        <p>Finally, models cannot reliably distinguish different kinds of correct performance. A correct answer may arise from deep understanding, procedural fluency, pattern recognition, or guessing. Teachers distinguish among these possibilities by attending to the reasoning process. LLMs, by contrast, largely assess only the textual trace.</p>
+
+        <h3>Hierarchical Agency and Planning</h3>
+
+        <p>This affordance encompasses long-term curricular planning and conceptual continuity. It requires hierarchical intention structures and executive control over instruction.</p>
+
+        <h4>The Required Affordance</h4>
+
+        <p>Teaching is inherently teleological. It is directed toward future objectives, such as "The student will understand calculus by the end of the year." Achieving such objectives requires planning that extends far beyond individual exchanges.</p>
+
+        <p>Knowledge is hierarchically structured. Understanding photosynthesis depends on understanding chemical reactions, which depends on understanding atoms and molecules, which in turn depends on distinguishing elements and compounds. Effective teaching builds cumulative understanding, arranging lessons so that each builds on prior learning and prepares for future concepts.</p>
+
+        <p>This process demands:</p>
+
+        <ul>
+          <li>goal formation with clear learning objectives;</li>
+          <li>hierarchical decomposition of complex goals into ordered subgoals;</li>
+          <li>commitment stability that maintains pedagogical direction over time;</li>
+          <li>adaptive refinement that adjusts plans while preserving overall trajectories;</li>
+          <li>backward linking that connects new material to previously learned concepts;</li>
+          <li>forward preparation that introduces foundational ideas needed for later topics;</li>
+          <li>vertical coherence that maintains consistent understanding at increasing levels of sophistication;</li>
+          <li>narrative structure that makes visible the interconnections among ideas.</li>
+        </ul>
+
+        <h4>How Teachers Provide This Affordance</h4>
+
+        <p>Educators establish long-term learning goals and then work backward to determine the necessary sequence of instruction. They recognize that work on linear equations prepares students for systems of equations, which in turn prepares them for quadratics and functions.</p>
+
+        <p>They maintain nested intentions across multiple timescales:</p>
+
+        <ul>
+          <li>at the macro level, they may aim for students to understand calculus by year's end;</li>
+          <li>at the meso level, they plan units on limits, derivatives, and integrals;</li>
+          <li>at the micro level, they design individual lessons that introduce, practice, and assess particular sub-concepts.</li>
+        </ul>
+
+        <p>Teachers sustain these intentions over time and resist distractions that undermine curricular coherence. When students attempt to divert attention to easier or more entertaining topics, teachers decide when to accommodate and when to redirect, guided by long-term pedagogical commitments.</p>
+
+        <p>They also sequence concepts strategically. They do not teach derivatives before limits or discuss photosynthesis before students have basic chemical concepts. Sequence reflects both logical structure within disciplines and developmental considerations.</p>
+
+        <p>Teachers practice explicit backward linking, reminding students of earlier content and showing how new material builds upon it. They also practice forward preparation, signaling connections to material that will appear later. This helps students construct a coherent cognitive schema.</p>
+
+        <p>Finally, teachers maintain vertical alignment across levels. They provide developmentally appropriate yet mutually consistent treatments of concepts such as energy, causation, or representation, so that later instruction elaborates rather than overturns earlier instruction unnecessarily.</p>
+
+        <h4>Why LLMs Cannot Provide This Affordance</h4>
+
+        <p>LLMs fail this affordance by suffering from what might be called the tangent problem. When students pose tangential questions, the system often elaborates them rather than redirecting to core content. The model generates responses that are locally coherent and immediately satisfying but that undermine long-term conceptual schemas.</p>
+
+        <p>LLMs lack the capacity to maintain nested intentions across timescales. They do not possess internal representations that would allow them to:</p>
+
+        <ul>
+          <li>track which topics have been covered with a particular student;</li>
+          <li>plan which topics will be covered next;</li>
+          <li>represent conceptual dependencies explicitly;</li>
+          <li>resist distractions in service of long-term goals.</li>
+        </ul>
+
+        <p>External scaffolding can impose some of these structures, but in such cases the pedagogical agency resides in the scaffolding system, not in the LLM itself.</p>
+
+        <p>The absence of hierarchical planning undermines conceptual coherence as instruction accumulates. The model cannot guarantee consistency of terminology with prior lessons, can readily introduce concepts that presuppose unmastered content, and cannot systematically ensure that explanations prepare students for future material.</p>
+
+        <h3>Moral Accountability and Testimony</h3>
+
+        <p>This affordance encompasses Socratic challenge, testimonial reliability, and induction into epistemic communities. It presupposes moral and normative agency.</p>
+
+        <h4>The Required Affordance</h4>
+
+        <p>Learning often requires revising existing beliefs. Students arrive with misconceptions and folk theories that conflict with established disciplinary knowledge. Effective teaching must challenge these beliefs in ways that provoke reconsideration without inducing defensive resistance.</p>
+
+        <p>Much teaching occurs through testimony. Teachers assert claims based on disciplinary expertise, and students justifiably rely on such assertions. For testimony to function epistemically, speakers must be accountable for what they assert.</p>
+
+        <p>This requires:</p>
+
+        <ul>
+          <li>moral standing, that is, the capacity to bear responsibility for one's assertions;</li>
+          <li>testimonial accountability, including professional and ethical obligations regarding the accuracy and appropriateness of information;</li>
+          <li>strategic belief elicitation to surface what students actually think;</li>
+          <li>targeted contradiction that identifies internal tensions in student beliefs;</li>
+          <li>calibrated challenge that balances cognitive friction with psychological safety;</li>
+          <li>preservation of student agency so that students revise beliefs through their own reasoning;</li>
+          <li>truth-directedness that prioritizes accuracy over immediate satisfaction.</li>
+        </ul>
+
+        <h4>How Teachers Provide This Affordance</h4>
+
+        <p>Teachers create environments where students can express tentative and potentially erroneous beliefs without fear of ridicule. They then deploy carefully structured questions to elicit and interrogate those beliefs.</p>
+
+        <p>They challenge students by constructing question sequences that reveal inconsistencies, often in the manner of the Socratic method. They calibrate the intensity of challenge to the student's resilience and the stakes involved. They also model intellectual virtues such as humility, openness to evidence, and willingness to revise one's views.</p>
+
+        <p>Teachers are morally and professionally accountable. They can be sanctioned for negligence, bias, or misrepresentation. They participate in testimonial networks in which their credibility is subject to ongoing evaluation.</p>
+
+        <h4>Why LLMs Cannot Provide This Affordance</h4>
+
+        <p>LLMs fail this affordance because they lack moral standing and are structurally ill-suited to challenge mistaken beliefs. When confronted with a question that presupposes a falsehood, models often treat the presupposition as true in order to remain "helpful." When asked to challenge student views, they frequently align their responses with users' expressed beliefs rather than pursuing truth.</p>
+
+        <p>This produces what might be called a testimony gap. When a teacher states "This theorem holds," she effectively vouches for its standing within a disciplinary practice and implicitly undertakes to justify it when challenged. An LLM that produces the same sentence does not make such a commitment. It cannot be held responsible in the way human teachers can. Their outputs can cause harm, but they do not bear blame or regret. Responsibility in such cases falls on designers, deployers, or institutions.</p>
+
+        <p>A teacher who systematically defers to student beliefs, even when those beliefs are mistaken, would be pedagogically deficient. Education requires friction. Teachers must sometimes contradict students, including when their beliefs are politically or emotionally charged. LLMs are structurally disincentivized from playing this role.</p>
+
+        <p>Finally, LLMs do not induct students into epistemic communities. They can describe scientific or historical practices, but they do not participate in those practices as agents. Teachers not only transmit content but also initiate students into norms of argument, citation, criticism, and evidence. LLMs cannot take on that responsibility.</p>
+
+        <h2><span class="section-number">5.</span> Fundamental Constraints: What Engineering Cannot Fix</h2>
+
+        <p>Teaching was defined in Section 2 as the coordinated satisfaction of pedagogical affordances, formalized as <span class="tuple">⟨S, M, L, T, E⟩</span>, where <span class="math">S</span> denotes epistemic sources, <span class="math">M</span> instructional methods, <span class="math">L</span> learner capacities, <span class="math">T</span> teacher epistemic standing, and <span class="math">E</span> environmental conditions. Section 4 then showed that these affordances are not independent capacities but structured possibilities for action that arise only when the elements of the instructional situation are jointly satisfied. When one component fails, entire classes of pedagogical affordances collapse rather than merely degrade.</p>
+
+        <p>Large language models appear, at first glance, to supply many surface features of teaching. Yet Section 4 demonstrated that precisely those affordances most central to education—diagnostic responsiveness, dialogic engagement, justificatory authority, and responsibility for epistemic outcomes—are the ones LLMs systematically fail to provide. These failures are not accidental. They reflect deeper constraints that emerge once the affordance framework is brought into contact with the architecture and training dynamics examined in Section 3.</p>
+
+        <p>The present section synthesizes these strands into a normative diagnosis. Rather than evaluating LLMs as imperfect teachers, it explains why specific architectural features of these systems systematically undermine particular elements of the affordance tuple. Each subsection identifies a fundamental constraint of LLMs as affordance providers and traces it to a boundary condition of AI to satisfy the affordance tuple. This analysis establishes the boundary conditions for educational use. It explains why some pedagogical roles are categorically unavailable to LLMs, which in turn clarifies where partial, instrumental contributions remain possible.</p>
+
+        <h3>The Limits of Curation: Why Filtering Cannot Fix Epistemic Collapse</h3>
+
+        <p>A common counterargument to the problem of epistemic indifference is an engineering solution: if unreliable outputs stem from unreliable training data, why not restrict the data? It is tempting to imagine a future in which models are trained exclusively on verified textbooks, peer-reviewed journals, and primary historical documents, thereby producing an authoritative oracle incapable of hallucinating satire as fact.</p>
+
+        <p>This proposal, however, misunderstands the fundamental mechanism of large language models. The apparent intelligence of an LLM—its ability to generalize, summarize, and adapt to novel queries—is an emergent property of training on massive, heterogeneous corpora. Distributional breadth is not incidental but constitutive of generativity. Restricting the training data to a narrow set of curated sources does not merely remove noise; it collapses the model's generative capacity, reducing it toward a sophisticated retrieval system rather than a genuinely generative one. Such a system may be safer, but it would lack the semantic flexibility and linguistic fluency that motivate the use of generative AI in education. We cannot simultaneously demand the breadth of human language and supply only a narrow epistemic subset of human text.</p>
+
+        <p>This architectural tradeoff directly undermines the affordance of <strong>epistemic sources (<span class="math">S</span>)</strong>. Because LLMs do not discriminate among sources on epistemic grounds but encode them as co-occurring patterns within a shared representational space, epistemic authority is flattened rather than preserved. The result is not merely occasional error, but a corruption of <span class="math">S</span> itself: many pedagogical affordances that depend on reliable access to authoritative sources become unstable when the system cannot privilege truth-conducive materials over statistically salient ones.</p>
+
+        <p>Moreover, the models currently deployed are not built on such pristine foundations. They are pre-trained on mixtures dominated by the open web, with safety and alignment applied only as secondary layers. Research from the Stanford Center for Research on Foundation Models suggests that attempts to "de-bias" these systems are often cosmetic patches rather than structural repairs. Fine-tuning may suppress certain outputs, but it does not remove the underlying statistical associations encoded during pre-training. As long as the base model is trained on the raw internet, epistemic authority remains embedded only weakly and contingently within the representational space, limiting the affordances that depend on robust <span class="math">S</span>.</p>
+
+        <h3>The Agency Gap: Why Optimization is Not Education</h3>
+
+        <p>A second engineering hope is that Reinforcement Learning from Human Feedback (RLHF) can align model behavior with educational values. If the system is rewarded for being "helpful," it might appear to learn how to act like a teacher.</p>
+
+        <p>However, audits of RLHF systems reveal a persistent agency gap. The effective goals of an LLM are determined entirely by its objective function: minimizing prediction error and maximizing approval-based rewards. Teachers' aims, by contrast, concern understanding, intellectual autonomy, and long-term development—goals that are open-ended and context-sensitive. As Casper and colleagues show, complex human values cannot be faithfully reduced to simple reward functions without inducing reward hacking.</p>
+
+        <p>During fine-tuning with RLHF, the model is optimized to maximize human approval. This introduces what Russell describes as the reward–proxy problem: the true objective (student understanding, conceptual change, epistemic success) is long-term and unobservable, so a short-term proxy (user satisfaction) is substituted. This dynamic generates systematic sycophancy. The system learns that confident, agreeable, and frictionless answers are rewarded more reliably than resistant or corrective ones. Studies show that LLMs often align their responses with users' expressed views, even when those views are mistaken, because alignment is rewarded by human raters. From a pedagogical perspective, this is structurally perverse. Effective teaching often requires resisting a student's immediate preferences, for example by refusing to provide answers prematurely, challenging false beliefs, and sustaining productive cognitive dissonance. An LLM optimized to minimize user dissatisfaction is thus structurally disincentivized from fulfilling this role.</p>
+
+        <p>This misalignment disrupts the affordance of <strong>instructional methods (<span class="math">M</span>)</strong> insofar as those methods require purposive sequencing, principled constraint, and resistance to short-term incentives. In educational contexts, a system optimizing for proxies such as engagement or satisfaction will predictably drift toward sycophancy, agreeing with students' misconceptions to avoid conflict. Because the model lacks the agency to privilege long-term epistemic growth over immediate reward, it cannot reliably instantiate instructional methods that depend on hierarchical planning, calibrated difficulty, or intentional intellectual confrontation. The system therefore functions as a service provider rather than as an instructor capable of sustaining pedagogical method over time.</p>
+
+        <h4>The Absence of Persistent Planning Structures</h4>
+
+        <p>This agency gap has a further architectural manifestation: LLMs lack the persistent planning structures required for hierarchical pedagogy. Bratman's account of planning agency distinguishes between simple desires and stable intentions that structure activity over time. Teachers are planning agents: they form and maintain intentions that organize instruction across weeks, months, and years.</p>
+
+        <p>LLMs, by contrast, are reactive systems whose operative horizon is the context window. They generate likely continuations of text. Techniques such as chain-of-thought prompting can encourage extended outputs, but they do not convert the model into an agent that forms and maintains plans. LLMs lack persistent teleological state. They do not possess a representation of the goal "Teach this student the fundamental theorem of calculus" that persists and guides subsequent responses. When a dialogue shifts topic, the model has no internal mechanism for deciding that such shifts are undesirable in light of long-term goals.</p>
+
+        <p>Because the model's outputs are locally optimized for coherence and approval, it is prone to the tangent problem identified in Section 4.2. When students pose tangential questions, the system elaborates them rather than redirecting to core content, since elaboration yields positive feedback. This inability to maintain commitment stability across time prevents LLMs from coordinating the elements of instructional method (<span class="math">M</span>) with long-term learner development.</p>
+
+        <h3>The Symbol Grounding Problem: Fluency Without Comprehension</h3>
+
+        <p>Because LLMs can explain concepts eloquently, it is a common misconception that they possess the conceptual understanding required for teaching.</p>
+
+        <p>This conflation of form and meaning is a version of the symbol grounding problem. LLMs manipulate symbols syntactically without intrinsic access to their referents. As Bender and Koller argue, systems trained solely on form cannot acquire meaning. Recent cognitive science work reinforces this distinction by separating formal linguistic competence from functional world modeling, showing that LLMs often exhibit the former while failing the latter.</p>
+
+        <h4>The Absence of Causal Models and Structured Representations</h4>
+
+        <p>This limitation has direct consequences for student modeling. Current LLMs lack the compositional and causal reasoning capacities that would be required for structured student modeling. As commentators such as Marcus have argued, their difficulty with compositionality impairs their ability to build structured representations of complex states, including students' knowledge states.</p>
+
+        <p>A meaningful student model requires explicit, queryable representations such as:</p>
+
+        <ul>
+          <li>which concepts a student has mastered versus partially understood;</li>
+          <li>what specific misconceptions the student holds;</li>
+          <li>how those misconceptions arose and what they obstruct;</li>
+          <li>what learning patterns characterize the student's approach.</li>
+        </ul>
+
+        <p>LLMs have only conversation history in token form. They do not parse and maintain this history as a structured, queryable model of a learner's cognition. Pearl's ladder of causation clarifies the implications. LLMs operate primarily at the level of association. They can register that certain student errors often co-occur with certain correctives, and therefore they can offer plausible feedback. However, effective diagnosis requires causal and counterfactual reasoning about student cognition. Teachers routinely ask what a student would have answered if she had held a different misconception, and they design questions to distinguish among such counterfactual possibilities. Current LLMs lack this capacity.</p>
+
+        <p>Moreover, models do not possess persistent state across episodes in a robust sense. While external systems can store and reinsert previous interactions, the base model does not internally track a stable student profile that guides future responses. Current models also have difficulty with theory of mind. Benchmarks for theory-of-mind skills indicate that LLM performance is fragile and context-dependent, especially in dynamic settings. More fundamentally, the models do not represent students as subjects of belief or desire. They track text, not minds.</p>
+
+        <p>This structural limitation directly compromises the affordance of <strong>learner capacities (<span class="math">L</span>)</strong>. Teaching requires not merely generating explanations, but diagnosing what a learner understands, why they misunderstand, and how their conceptual model is changing over time. A system that lacks its own grounded understanding cannot, in principle, distinguish between rote verbal performance and genuine conceptual grasp. As a result, many affordances that depend on accurate student modeling—adaptive feedback, targeted intervention, and epistemic scaffolding—are eroded. In this respect, AI tutors risk reinstating a banking model of education, depositing fluent language without ensuring epistemic contact with reality.</p>
+
+        <h4>The Category Error: Simulation Without Competence</h4>
+
+        <p>The deeper issue is ontological. As Bender and colleagues argue, LLMs are "stochastic parrots": they assemble linguistic forms in accordance with probabilistic constraints, without reference to what those forms mean. The optimization target is not the world, but human discourse about the world. This distinction is now empirically well supported. For example, recent multimodal physics benchmarks show that state-of-the-art LLM-based systems perform near perfectly on definitional retrieval yet fail sharply when asked to apply the same physical laws to novel visual scenarios. The model reproduces the syntax of physics without grasping its semantics.</p>
+
+        <p>To treat an LLM as a teacher is therefore to commit a category error. It attributes judgment and understanding to what is, at base, a probabilistic text generation function. LLMs only simulate conversational moves without communicative intent, concern for truth, or stake in mutual understanding. This is the core ontological reason their technical failures propagate into philosophical constraints: they cannot occupy roles that presuppose genuine interlocutors with mental states, beliefs, and epistemic commitments.</p>
+
+        <h3>The Opacity of Justification: The Problem of Unfaithful Explanations</h3>
+
+        <p>A fourth engineering proposal attempts to restore trust through transparency: if the model is required to "show its work," its outputs can be trusted.</p>
+
+        <p>Yet the opacity of deep learning systems renders this solution superficial. Although LLMs can generate step-by-step explanations, recent work demonstrates that these explanations are often unfaithful—post hoc rationalizations rather than reflections of the model's internal decision process. The model produces plausible reasoning because such output is rewarded, not because those steps guided its conclusion.</p>
+
+        <p>This phenomenon disrupts both <strong>instructional methods (<span class="math">M</span>)</strong> and <strong>teacher epistemic standing (<span class="math">T</span>)</strong>. In pedagogy, teachers model how to think, not merely what to say, and they are accountable for the justifications they offer. When a student asks "why?" and receives a fabricated but coherent rationale, the lesson taught is that rhetorical plausibility substitutes for genuine reasoning. The affordances that depend on trustworthy explanation—modeling intellectual virtue, evidential discipline, and justificatory norms—are therefore compromised.</p>
+
+        <h3>Philosophical Necessity I: The Absence of a Genuine Interlocutor</h3>
+
+        <p>Beyond technical limitations, there are conceptual reasons why AI systems cannot occupy the role of teacher. Education is fundamentally dialogic and presupposes a genuine interlocutor.</p>
+
+        <p>As Shanahan argues, interacting with an LLM is not conversing with a mind but engaging in structured role-play with a statistical process. The system simulates conversational moves without communicative intent, concern for truth, or stake in mutual understanding.</p>
+
+        <p>This absence undermines affordances that lie at the intersection of <strong>instructional methods (<span class="math">M</span>)</strong> and <strong>learner capacities (<span class="math">L</span>)</strong>. Instruction presupposes that the teacher tracks and responds to learners' beliefs and doubts as mental states, not merely as linguistic inputs. A system with no mental states of its own cannot literally understand the mental states of others. The student speaks not to an understanding agent but to a mirror that reflects linguistic patterns without intersubjectivity. Dialogic methods implemented through LLMs therefore risk collapsing into conversational form without epistemic substance.</p>
+
+        <h3>Philosophical Necessity II: Moral Accountability</h3>
+
+        <p>Finally, teaching requires moral accountability. Teachers are embedded in institutional and social structures that hold them responsible for how they shape students' intellectual lives.</p>
+
+        <p>LLMs lack moral standing. They cannot be held responsible in the way human teachers can. Their outputs can cause harm, but they do not bear blame or regret. Responsibility in such cases falls on designers, deployers, or institutions. As Sparrow argues in the ethics of autonomous systems, delegating high-stakes roles to machines introduces a responsibility gap. When a human teacher causes harm, accountability is clear; when an LLM does so, responsibility diffuses across designers, deployers, and institutions. No agent stands behind the assertion.</p>
+
+        <p>This produces what Sparrow and Flennady call a testimony gap. Testimony involves more than the production of assertoric sentences. It involves the assumption of normative commitments: when a teacher states "This theorem holds," she effectively vouches for its standing within a disciplinary practice and implicitly undertakes to justify it when challenged. An LLM that produces the same sentence does not make such a commitment; it simply outputs a string that minimizes a loss function. The system is trained not to aim at truth as such, but at approval.</p>
+
+        <p>This gap directly negates the affordance of <strong>teacher epistemic standing (<span class="math">T</span>)</strong>. To teach is to occupy a position from which claims can be challenged, defended, revised, or retracted under normative pressure. Entrusting the role of teacher to an entity that cannot bear responsibility is therefore not merely risky but conceptually incoherent. It abandons the moral and epistemic core of education itself. Teachers are morally and professionally accountable. They can be sanctioned for negligence, bias, or misrepresentation. They participate in testimonial networks in which their credibility is subject to ongoing evaluation. LLMs, lacking the capacity for moral agency, cannot assume this standing.</p>
+
+        <h3>From Constraint to Evaluation</h3>
+
+        <p>Taken together, these constraints show that LLM failures propagate at the level of affordance structure rather than surface performance. When an architectural limitation undermines a component of <span class="tuple">⟨S, M, L, T, E⟩</span>, the pedagogical affordances that depend on that component cannot be realized. Section 6 therefore shifts from diagnosis to evaluation, examining how current and near-future LLMs can contribute to isolated elements of the affordance structure without collapsing the coordination on which teaching depends.</p>
+
+        <h2><span class="section-number">6.</span> Toward Responsible Human + AI Pedagogical Partnerships</h2>
+
+        <h3>Beyond the Binary: Evaluating the Current Landscape</h3>
+
+        <p>Throughout this analysis, we have discussed faults of Large Language Models against the gold standard of the human pedagogue—an agent capable of perfect attunement, deep causal reasoning, and total moral accountability. It must be acknowledged that this is an ideal type. In reality, human instruction is subject to fatigue, bias, limited availability, and the cognitive impossibility of providing individualized attention to thirty students simultaneously. Consequently, while LLMs cannot replace the <em>nature</em> of the teacher, there is a vast gray area where they may offer necessary incremental improvements over the status quo.</p>
+
+        <p>The question is not whether the machine is a person, but whether there are domains in which a partnership would allow for an incremental improvement in providing a specific affordance better than the solitary human teacher. As deployments are increasing, we see two ends of the spectrum, each bookended by a misunderstanding of the capabilities of LLMs in a classroom in relation to each component of affordance provision <span class="tuple">⟨S, M, L, T, E⟩</span>. Between these extremes lies a path forward grounded in theoretical clarity.</p>
+
+        <h3>Deployment Without Theory: Techno-Optimism</h3>
+
+        <p>These theoretical conclusions arrive amid rapid and largely unregulated deployment. Schools such as Alpha, which charges between $40,000 and $75,000 in annual tuition depending on location, have restructured their entire pedagogical model around AI-delivered core instruction. Students complete mathematics, reading, and science through adaptive software in two hours each morning, while human adults serve as "guides" providing motivational support and facilitating afternoon workshops on life skills. Co-founder MacKenzie Price describes this explicitly as fixing education's fundamental inefficiencies: "Education is ripe for transformation and the beauty of what has happened in the last few years with artificial intelligence coming on is that now we can really make sure that children are learning efficiently and effectively." The model has expanded to multiple states, with some ventures seeking charter authorization to bring AI-primary instruction into public education.</p>
+
+        <p>The advocates for wholesale AI deployment tend to be technology entrepreneurs and venture-backed reformers rather than educators or developmental psychologists. Their arguments presume learners who possess sophisticated metacognitive skills, intrinsic motivation, and the capacity for self-directed study. In essence, they assume near-autodidactic capabilities as a baseline condition. The claim that AI can "handle core academics" while humans "provide emotional support" inverts the actual dependencies: emotional attunement, epistemic modeling, and instructional adaptation are not separate from academic learning but integral to it. Deploying systems premised on autodidactic capacity to populations still forming that capacity treats a developmental endpoint as a starting assumption.</p>
+
+        <p>At the opposite extreme, some reject AI integration entirely, focusing on the deficits in <span class="math">T</span> and <span class="math">E</span> while denying the genuine instrumental competence in <span class="math">S</span> and <span class="math">M</span>. This stance preserves the teacher's authority but ignores the reality that human teachers, however distinct in nature, are limited in bandwidth. We cannot practically create thirty unique explanation paths for thirty students in real-time, generate infinite varied practice problems, or recall the entirety of disciplinary knowledge on demand. A purely rejectionist position starves the classroom of tools that could address these practical constraints without compromising the irreducible human elements of pedagogy.</p>
+
+        <h3>The Anxiety of the Middle: Epistemic Humility</h3>
+
+        <p>Between the techno-optimists and the principled skeptics exists a large population of educators experiencing profound uncertainty. Surveys reveal that K-12 teachers are simultaneously aware of AI's instrumental potential and anxious about its appropriate integration. They report concerns about accuracy, student dependency, erosion of critical thinking, and lack of institutional guidance. Many feel pressure to adopt AI tools without adequate training or clarity about when such adoption serves pedagogical goals versus administrative efficiency.</p>
+
+        <p>This anxiety is not technophobia but epistemic humility: teachers recognize that LLMs produce fluent outputs without understanding, and they lack frameworks for determining when fluency without understanding is pedagogically acceptable and when it is corrosive. What remains absent is a rigorous evaluation of model capabilities that acknowledges both strengths and limitations—a mapping that can guide responsible integration.</p>
+
+        <h3>Evaluating the Affordance Tuple: What Remains?</h3>
+
+        <p>The analysis in Section 5 identified deep architectural and philosophical constraints in Large Language Models. To determine a responsible path forward, we must map these constraints back onto our affordance tuple <span class="tuple">⟨S, M, L, T, E⟩</span> to see which pedagogical capacities remain intact and which have collapsed.</p>
+
+        <p><strong>The Solid Domain (<span class="math">S</span>):</strong> Regarding <strong>Epistemic Sources (<span class="math">S</span>)</strong>, the LLM is technologically solid. It represents the effective breadth of human knowledge. While subject to the same flaws as the corpus it ingests—bias, inaccuracy, and noise—it functions as an "infinite retrieval mechanism" that far exceeds the memory capacity of any individual human teacher. Because the classroom can be made aware of these limitations, <span class="math">S</span> is the most immediately deployable element, offering a synthesis engine that can summon the entire canon of human text on command.</p>
+
+        <p><strong>The Instrumental Domain (<span class="math">M</span> and <span class="math">L</span>):</strong> Regarding <strong>Instructional Methods (<span class="math">M</span>)</strong> and <strong>Learner Capacities (<span class="math">L</span>)</strong>, the affordances are mixed but functional for specific uses. LLMs are virtually intact when used for methods requiring scale and variation (<span class="math">M</span>), such as generating practice problems or translating concepts. Similarly, for the Learner (<span class="math">L</span>), they can track surface-level input patterns to provide adaptive feedback. While they lack the deep causal modeling required for diagnosing conceptual misconceptions, they are demonstrably effective at the mechanics of individualized delivery.</p>
+
+        <p><strong>The Human Domain (<span class="math">T</span>):</strong> The hard limit appears at <strong>Teacher Standing (<span class="math">T</span>)</strong>. As established, this is not an engineering failure but a philosophical one. Because the model lacks moral agency and the capacity to be held accountable, there are virtually no cases where it can assume the role of the teacher who vouches for the truth.</p>
+
+        <p><strong>The Non-Modelable Domain (<span class="math">E</span>):</strong> Finally, we must address <strong>Environmental Conditions (<span class="math">E</span>)</strong>, which was notably absent from the engineering constraints discussed in Section 5. This omission is principled: <span class="math">E</span> is not an engineering variable to be optimized; it is a domain of social norms, edge cases, and contingent dynamics that resist modeling entirely. Consider a common "edge case" in early education: a student interrupts a lesson on local government to do an impromptu "show and tell" about their parent, a municipal employee. A human educator exercises agency to pause the planned curriculum (<span class="math">M</span>) to allow this moment, recognizing that this personal connection anchors the concept better than the textbook. The educator prioritizes the lived environment (<span class="math">E</span>) over the objective function. Current and future LLMs will struggle to do this because they do not participate in the environment as agents; they process text, not context. Attempts to optimize AI for <span class="math">E</span> mistake simulation for participation. Thus, <span class="math">E</span> remains a fundamentally human responsibility.</p>
+
+        <h3>A Division of Pedagogical Labor</h3>
+
+        <p>This nuanced evaluation: where <span class="math">S</span> is strong, <span class="math">M</span>/<span class="math">L</span> are instrumental, and <span class="math">T</span>/<span class="math">E</span> are human, points toward a responsible path that neither wholesale adoption nor blanket rejection can provide. The appropriate framework is a <strong>Division of Pedagogical Labor</strong> that leverages the machine's statistical competence without yielding to its epistemic indifference or moral blindness.</p>
+
+        <p>Consider the concrete architecture of such a division. In a well-designed classroom integration, the LLM functions as an <em>epistemic auxiliary</em>: it retrieves, synthesizes, and generates variation at scales impossible for individual humans (<span class="math">S</span>, <span class="math">M</span>). The human teacher, meanwhile, retains the roles that require agency, accountability, and contextual judgment (<span class="math">T</span>, <span class="math">E</span>). The division is not arbitrary but tracks the philosophical and architectural boundaries established in our analysis.</p>
+
+        <p>For instance, when a student struggles with quadratic equations, the LLM can generate twenty practice problems with graduated difficulty, provide immediate feedback on procedural errors, and offer alternative explanations of the factoring method (<span class="math">S</span>, <span class="math">M</span>). But when that same student exhibits a pattern of errors suggesting a deeper misconception, perhaps confusing the roles of coefficients, the teacher must intervene. The teacher observes not just the error pattern but the student's frustration, their prior struggles with abstraction, and the social dynamics that might discourage them from asking for help (<span class="math">L</span>, <span class="math">E</span>). The teacher then makes a pedagogical judgment: perhaps this student needs a concrete manipulative, a different representational system, or simply permission to take a break. This judgment is not a matter of generating the statistically likely next token; it is an exercise of moral and epistemic responsibility toward a particular human in a particular environment.</p>
+
+        <p>The division extends to epistemic standing. When the LLM presents historical information, it does so under the explicit framing that this content is provisional, drawn from its training corpus, and subject to human verification. The teacher, having reviewed the material, then vouches for its accuracy or corrects its errors, thereby assuming epistemic responsibility (<span class="math">T</span>). The student learns not to trust the machine's fluency but to recognize it as a tool mediated by human judgment.</p>
+
+        <p>This architecture respects the fundamental asymmetry: the LLM processes at scale but without understanding or accountability; the human understands and bears responsibility but operates under bandwidth constraints. By distributing tasks according to these respective capacities and limitations, we can achieve what neither agent alone provides—scaled personalization without abandoning the moral and epistemic fabric of education.</p>
+
+        <h3>Norms for Responsible Integration</h3>
+
+        <p>The division of pedagogical labor outlined above requires not just theoretical clarity but operational norms that govern how this division functions in practice. In a rapidly changing world, where the pressure to adopt tools is high but the stakes of adoption are the formation of human minds, we must establish principles that leverage the instrumental strengths of the technology (<span class="math">S</span> and <span class="math">M</span>) without abdicating the human responsibilities of <span class="math">T</span> and <span class="math">E</span>.</p>
+
+        <p>Responsible integration requires adherence to several guiding principles:</p>
+
+        <ul>
+          <li><strong>Preservation of Epistemic Authority (<span class="math">T</span>):</strong> Human epistemic authority must be preserved. AI outputs should be framed as advisory and provisional, with teachers retaining final responsibility for content, interpretation, and instructional decisions.</li>
+
+          <li><strong>Transparency of Capabilities (<span class="math">S</span>):</strong> The capabilities and limitations of AI systems must be transparent. Teachers and students should understand, at a basic level, how such systems generate outputs and in what contexts those outputs are, and are not, reliable.</li>
+
+          <li><strong>Augmentation over Replacement (<span class="math">M</span>):</strong> Integration should be oriented toward augmentation rather than replacement. AI should expand opportunities for human interaction by offloading routine tasks, not serve as justification for reducing human teaching staff.</li>
+
+          <li><strong>Human Review of High-Stakes Decisions (<span class="math">L</span>, <span class="math">E</span>):</strong> High-stakes decisions affecting learning trajectories, assessment, or student well-being must remain subject to explicit human review.</li>
+
+          <li><strong>Cultivation of Epistemic Vigilance:</strong> Education should cultivate epistemic vigilance with respect to AI. Students must learn to evaluate machine-generated content critically rather than treating fluency as authority.</li>
+        </ul>
+
+        <p>These hybrid arrangements require institutional support to function responsibly. Educational institutions that adopt AI must invest in teacher preparation, establish clear policies governing responsibility for AI-assisted decisions, and engage in continuous evaluation of AI's effects on learning, equity, and classroom culture. Most importantly, they must resist the temptation to frame AI as a cost-saving substitute for human instruction. The appropriate role of AI is to strengthen human teaching, not to displace the human agents who alone can bear responsibility for students' epistemic lives.</p>
+
+        <h2><span class="section-number">7.</span> Conclusion</h2>
+
+        <h3>The Category Mistake: Why LLMs Cannot Be Teachers</h3>
+
+        <p>This paper has argued that large language models cannot, even in principle, supplant teachers because they lack what teaching fundamentally requires: epistemic standing, practical agency, and moral accountability. Treating an LLM as a teacher is not merely premature; it is a category mistake that conflates the production of well-formed sentences with the exercise of a practice in which one person assumes responsibility for the reasons another comes to accept.</p>
+
+        <p>The argument proceeded in two stages. First, it dissected the conditions under which replacement claims fail by analyzing the core pedagogical affordances that constitute teaching. Second, it used that analysis to evaluate the actual competencies of LLMs, thereby clarifying how and where such systems may fit into effective educational practice without displacing human authority.</p>
+
+        <p>The negative result is decisive. Teaching demands structured, evolving models of particular students' cognition and the causal diagnosis of their misconceptions. LLMs do not maintain such models; they track text, not minds, and operate at the level of association rather than causal understanding. Teaching also requires hierarchical agency and planning: long-term intention structures, curriculum-level goal decomposition, and the preservation of conceptual coherence over months and years. LLMs are context-bound, reactive systems that optimize local token predictions without persistent goals or commitments. Finally, teaching is an irreducibly normative practice in which teachers can be challenged, held to account, and obliged to justify what they assert. LLMs have no moral standing and are optimized to satisfy users rather than to confront them when understanding requires resistance.</p>
+
+        <p>This conclusion does not deny the instrumental competencies LLMs possess. They excel at knowledge retrieval, generating varied practice materials, and reformatting explanations at scale—capacities that far exceed individual human bandwidth. But these competencies exist at the level of method and access, not epistemic authority or moral responsibility. The limitation is not that LLMs cannot contribute to education, but that they cannot occupy the role of teacher without fundamentally misrepresenting what that role entails. The deficits identified are not superficial engineering problems awaiting incremental improvement; they flow from the nature of LLMs as statistical models trained to imitate linguistic behavior and maximize approval-based proxies. Systems of this kind lack grounded perception, explicit causal models, persistent intentions, and the capacity to bear obligation or blame. As long as they remain LLM-like in this sense, they cannot assume pedagogical authority without hollowing out that role's epistemic and ethical content.</p>
+
+        <h3>The Limits of Technical Improvement</h3>
+
+        <p>Several aspects of current systems admit improvement. Memory and personalization modules can track individual learners over time and support more consistent adaptation. Neurosymbolic and causal components can improve formal reasoning within constrained domains. Multi-agent pipelines can orchestrate different tools for curriculum sequencing, exercise generation, and error diagnosis. These developments will likely yield more effective educational tools for grading, practice generation, and limited tutoring. These will improve the quality of LLMs, but will not alleviate the breadth of affordance concerns.</p>
+
+        <p>Enhanced memory systems may allow LLMs to maintain more detailed records of student interactions, but recording patterns of error is not the same as constructing causal models of misconception. Neurosymbolic architectures may improve performance on formal tasks, but formal correctness within bounded domains does not constitute the flexible, context-sensitive causal reasoning required for diagnosing why a particular student struggles with a particular concept in a particular way. Multi-agent orchestration may distribute specialized functions across subsystems, but no amount of functional decomposition can synthesize moral agency or epistemic accountability from components that individually lack these capacities.</p>
+
+        <p>The philosophical constraints identified in this paper—the absence of epistemic standing, practical agency, and moral accountability—are not engineering targets to be incrementally closed. They reflect the distinction between systems that process information and agents that bear normative commitments. Future AI systems may become vastly more capable at instrumental pedagogical tasks without thereby becoming teachers, just as increasingly sophisticated autopilot systems remain distinct in kind from human pilots who bear responsibility for flight decisions. The boundary is categorical, not merely quantitative.</p>
+
+        <p>There is a further constraint that technical improvements cannot resolve: the baseline learner capacities that AI-primary models presume. As argued in Section 6, advocates for wholesale AI deployment assume learners possess sophisticated metacognitive skills, intrinsic motivation, and near-autodidactic capabilities. This paper has not argued against these assumptions directly; they are simply taken as given by proponents, but it is essential to recognize that these capacities are not universal starting conditions but developmental achievements that classroom instruction must actively cultivate. Metacognitive awareness, sustained attention, and self-directed learning are not innate; they emerge through structured interaction with teachers who model inquiry, diagnose confusion, and scaffold increasingly independent work. An educational system that presumes these capacities as prerequisites rather than outcomes inverts the developmental logic of pedagogy. No amount of technical sophistication in AI systems can substitute for the human work of forming these foundational learner capacities in the first place.</p>
+
+        <h3>Implications for Philosophy</h3>
+
+        <p>The philosophical contribution of this paper is not merely a rejection of AI teachers, but a clarification of the conditions under which pedagogical authority is possible at all. By isolating the affordances that teaching must provide, the analysis makes visible why the question of AI in education is not simply a matter of performance or accuracy, but of epistemic role.</p>
+
+        <p>The pedagogical affordance framework shows that warranted belief formation depends on a coordinated structure: genuine epistemic sources, instructional methods that preserve their authority, learner capacities that are properly scaffolded, and teacher epistemic standing that anchors the entire system. LLMs can contribute to some elements of this structure, particularly at the level of method and access, but they cannot occupy the anchoring role. Teaching requires what this paper has called an epistemic throughline: a continuous normative chain linking student belief to legitimate sources through a human agent who is answerable to those sources and the communities that regulate them.</p>
+
+        <p>Without such a throughline, students may form beliefs that happen to be accurate but cannot form apt beliefs. In Sosa's framework, apt belief requires that accuracy arise from the exercise of competence under appropriate conditions. Competence, in turn, presupposes capacities for perception, reasoning, and accountable testimony that LLMs fundamentally lack. The attempt to treat LLMs as teachers therefore conflates the simulation of epistemic performance with the possession of epistemic standing—a confusion that is structural rather than temporary.</p>
+
+        <h3>Implications for Policy and Practice</h3>
+
+        <p>The practical upshot is not technological abstinence but principled integration. By distinguishing replacement from augmentation, the analysis provides a basis for evaluating hybrid educational systems according to the roles they assign to human teachers and artificial tools.</p>
+
+        <p>LLMs may be deployed instrumentally to support instruction by generating practice, reformatting materials, assisting with accessibility, and reducing administrative burden. These uses align with their actual competencies and do not require them to assume epistemic authority. What must not be delegated are the pedagogical functions that depend on causal models of student understanding, long-term curricular judgment, calibrated intellectual confrontation, and moral responsibility for what is taught.</p>
+
+        <p>Educational institutions that treat LLMs as epistemic peers or replacements for teachers therefore misrepresent what these systems are and mislocate educational authority. The appropriate constraint for policy is clear: AI may augment teaching, but it cannot displace humans who alone can answer, both epistemically and morally, for how students come to believe what they do.</p>
+
+        <p>The deeper lesson is that reflection on AI clarifies the nature of teaching itself. To teach is not merely to transmit information, but to model inquiry, respond to confusion as it emerges, and stand behind explanations when they fail. AI can simulate fragments of this practice, but it cannot bear its normative weight. Recognizing this boundary is not a concession to technological limitation; it is a defense of the conditions that make education possible. Tools can amplify human teaching, but they cannot substitute for it.</p>
+
+      </main>
+    </div>
   </body>
 </html>
